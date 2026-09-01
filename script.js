@@ -216,8 +216,8 @@ async function loadDreamWall(force = false){
   const allLink = $('#allDreamsLink');
 
   if(!config){
-    status.textContent = 'aktif setelah deploy';
-    feed.innerHTML = '<div class="dream-empty"><span>☁️</span><p>Dinding publik akan aktif otomatis setelah website dibuka dari GitHub Pages.</p></div>';
+    status.textContent = 'belum aktif';
+    feed.innerHTML = '<div class="dream-empty"><span>☁️</span><p>Belum ada.</p></div>';
     return;
   }
 
@@ -236,8 +236,8 @@ async function loadDreamWall(force = false){
     }catch{}
   }
 
-  status.textContent = 'menyambung ke GitHub...';
-  feed.innerHTML = '<div class="dream-loading"><span>☁️</span><p>Lagi nyari mimpi yang nyangkut di GitHub...</p></div>';
+  status.textContent = 'memuat...';
+  feed.innerHTML = '<div class="dream-loading"><span>☁️</span><p>Memuat...</p></div>';
 
   try{
     const url = `https://api.github.com/repos/${encodeURIComponent(config.owner)}/${encodeURIComponent(config.repo)}/issues?state=open&sort=created&direction=desc&per_page=100`;
@@ -249,8 +249,8 @@ async function loadDreamWall(force = false){
     renderDreamIssues(issues, feed, status);
   }catch(err){
     console.warn(err);
-    status.textContent = 'GitHub lagi malu-malu';
-    feed.innerHTML = '<div class="dream-empty"><span>🌧️</span><p>Dinding belum bisa dimuat. Coba segarkan lagi atau buka semua titipan langsung di GitHub.</p></div>';
+    status.textContent = 'gagal dimuat';
+    feed.innerHTML = '<div class="dream-empty"><span>🌧️</span><p>Coba lagi.</p></div>';
   }
 }
 
@@ -260,7 +260,7 @@ function renderDreamIssues(issues, feed = $('#dreamFeed'), status = $('#dreamWal
     status.textContent = 'masih kosong';
     const empty = document.createElement('div');
     empty.className = 'dream-empty';
-    empty.innerHTML = '<span>☁️</span><p>Belum ada mimpi publik. Kalau kamu jadi yang pertama, sejarah kecil dimulai dari tombol di sebelah.</p>';
+    empty.innerHTML = '<span>☁️</span><p>Belum ada mimpi.</p>';
     feed.append(empty);
     return;
   }
@@ -286,6 +286,79 @@ $('#savePrivateDream').addEventListener('click', () => {
   privateDream.textContent = `Mimpi pribadi tersimpan: “${value}”`;
   showToast('Disimpan pribadi di browser ini ☁️');
 });
+
+function buildDreamShareUrl(dream, alias){
+  const payload = encodeURIComponent(JSON.stringify({
+    v:1,
+    text:dream.slice(0,280),
+    alias:(alias || 'Anonim').slice(0,30)
+  }));
+  const base = location.href.split('#')[0];
+  return `${base}#mimpi=${payload}`;
+}
+
+function readSharedDreamFromHash(){
+  const match = location.hash.match(/^#mimpi=(.+)$/);
+  if(!match) return null;
+  try{
+    const data = JSON.parse(decodeURIComponent(match[1]));
+    if(!data || typeof data.text !== 'string') return null;
+    const text = data.text.trim().slice(0,280);
+    if(!text) return null;
+    return {text, alias:String(data.alias || 'Anonim').trim().slice(0,30) || 'Anonim'};
+  }catch{
+    return null;
+  }
+}
+
+function showSharedDreamFromUrl(){
+  const data = readSharedDreamFromHash();
+  const card = $('#sharedDreamCard');
+  if(!data){
+    card.hidden = true;
+    return;
+  }
+  $('#sharedDreamText').textContent = `“${data.text}”`;
+  $('#sharedDreamAlias').textContent = data.alias;
+  card.hidden = false;
+  requestAnimationFrame(() => card.scrollIntoView({behavior:reduceMotion ? 'auto' : 'smooth', block:'center'}));
+}
+
+$('#makeDreamLink').addEventListener('click', () => {
+  const dream = dreamInput.value.trim();
+  const alias = dreamAlias.value.trim() || 'Anonim';
+  if(!dream) return showToast('Tulis mimpinya dulu. Link kosong cuma bikin semesta bingung.');
+  const url = buildDreamShareUrl(dream, alias);
+  $('#dreamShareLink').value = url;
+  $('#dreamShareBox').hidden = false;
+  showToast('Link mimpi siap ✦', 1800);
+});
+
+$('#copyDreamLink').addEventListener('click', () => {
+  const url = $('#dreamShareLink').value;
+  if(url) copyText(url, 'Link mimpi disalin ☁️');
+});
+
+$('#shareDreamLink').addEventListener('click', async () => {
+  const url = $('#dreamShareLink').value;
+  if(!url) return;
+  const title = 'Ada mimpi nyasar dari Riyan’s Little Universe ☁️';
+  if(navigator.share){
+    try{
+      await navigator.share({title, text:'Baca titipan mimpi ini:', url});
+      return;
+    }catch(err){
+      if(err?.name === 'AbortError') return;
+    }
+  }
+  copyText(url, 'Browser tidak punya tombol share. Link sudah disalin.');
+});
+
+$('#dismissSharedDream').addEventListener('click', () => {
+  history.replaceState(null, '', `${location.pathname}${location.search}`);
+  $('#sharedDreamCard').hidden = true;
+});
+window.addEventListener('hashchange', showSharedDreamFromUrl);
 
 $('#publishDream').addEventListener('click', () => {
   const dream = dreamInput.value.trim();
@@ -317,7 +390,7 @@ $('#publishDream').addEventListener('click', () => {
 
   const url = `https://github.com/${config.owner}/${config.repo}/issues/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`;
   window.open(url, '_blank', 'noopener');
-  showToast('GitHub dibuka. Tinggal klik “Submit new issue” di sana ✦', 3200);
+  showToast('Lanjutkan kiriman di GitHub ✦', 2200);
 });
 
 $('#refreshDreamWall').addEventListener('click', () => loadDreamWall(true));
@@ -502,15 +575,31 @@ function escapeNoButton(){
   }
 }
 
-noBtn.addEventListener('pointerenter', escapeNoButton);
-noBtn.addEventListener('pointerdown', (event) => {
-  if(event.pointerType === 'touch' && !reduceMotion){
-    event.preventDefault();
-    escapeNoButton();
-  }
+let lastNoEscapeAt = 0;
+function dodgeNoFromTouch(event){
+  if(reduceMotion || noEscapes >= 7) return;
+  event.preventDefault();
+  event.stopPropagation();
+  const now = performance.now();
+  if(now - lastNoEscapeAt < 220) return;
+  lastNoEscapeAt = now;
+  escapeNoButton();
+}
+
+noBtn.addEventListener('pointerenter', (event) => {
+  if(event.pointerType === 'mouse') escapeNoButton();
 });
-noBtn.addEventListener('click', () => {
+noBtn.addEventListener('pointerdown', (event) => {
+  if(event.pointerType !== 'mouse') dodgeNoFromTouch(event);
+});
+noBtn.addEventListener('touchstart', dodgeNoFromTouch, {passive:false});
+noBtn.addEventListener('click', (event) => {
+  if(performance.now() - lastNoEscapeAt < 650){
+    event.preventDefault();
+    return;
+  }
   if(!reduceMotion && noEscapes < 7){
+    event.preventDefault();
     escapeNoButton();
     return;
   }
@@ -524,6 +613,80 @@ yesBtn.addEventListener('click', () => {
   yesBtn.textContent = 'AKU JUGA BETAH 💗';
   showToast('Achievement unlocked: gampang dirayu website ✦');
 });
+
+// ===== Kontak dari halaman Blogger =====
+const contactServiceMap = [
+  {test:/instagram\.com/i, name:'Instagram', icon:'◎'},
+  {test:/(facebook\.com|fb\.com)/i, name:'Facebook', icon:'f'},
+  {test:/(twitter\.com|x\.com)/i, name:'X / Twitter', icon:'𝕏'},
+  {test:/(youtube\.com|youtu\.be)/i, name:'YouTube', icon:'▶'},
+  {test:/tiktok\.com/i, name:'TikTok', icon:'♪'},
+  {test:/linkedin\.com/i, name:'LinkedIn', icon:'in'},
+  {test:/(wa\.me|whatsapp\.com)/i, name:'WhatsApp', icon:'☏'},
+  {test:/^mailto:/i, name:'Email', icon:'✉'},
+  {test:/telegram\.(me|org)|t\.me/i, name:'Telegram', icon:'➤'}
+];
+
+function contactDescriptor(href){
+  return contactServiceMap.find(item => item.test.test(href)) || null;
+}
+
+function renderBloggerContacts(links){
+  const grid = $('#contactGrid');
+  const loading = $('#contactLoading');
+  const existing = new Set([...grid.querySelectorAll('a')].map(a => a.href.replace(/\/$/,'')));
+  const seenServices = new Set();
+  links.forEach(({href, label}) => {
+    const info = contactDescriptor(href);
+    if(!info) return;
+    let absolute;
+    try{ absolute = new URL(href, 'https://riyangiting.blogspot.com').href; }catch{ return; }
+    const normalized = absolute.replace(/\/$/,'');
+    const key = `${info.name}:${normalized}`;
+    if(existing.has(normalized) || seenServices.has(key)) return;
+    seenServices.add(key);
+    const a = document.createElement('a');
+    a.className = 'contact-item';
+    a.href = absolute;
+    a.target = '_blank';
+    a.rel = 'noopener';
+    const display = (label || absolute).replace(/^https?:\/\//,'').replace(/^www\./,'').slice(0,70);
+    a.innerHTML = `<span>${info.icon}</span><div><strong>${info.name}</strong><small></small></div><b>↗</b>`;
+    a.querySelector('small').textContent = display;
+    grid.insertBefore(a, loading || null);
+  });
+  if(loading) loading.remove();
+}
+
+window.__riyanContactFeed = function(data){
+  try{
+    const entries = data?.feed?.entry || [];
+    const page = entries.find(entry => {
+      const title = entry?.title?.$t || '';
+      const alt = (entry?.link || []).find(l => l.rel === 'alternate')?.href || '';
+      return /kontak/i.test(title) || /\/p\/kontak-riyan\.html/i.test(alt);
+    });
+    if(!page) throw new Error('Halaman Kontak tidak ditemukan di feed.');
+    const doc = new DOMParser().parseFromString(page?.content?.$t || '', 'text/html');
+    const links = [...doc.querySelectorAll('a[href]')].map(a => ({href:a.getAttribute('href'), label:a.textContent.trim()}));
+    renderBloggerContacts(links);
+  }catch(err){
+    console.warn('Kontak Blogger:', err);
+    const loading = $('#contactLoading');
+    if(loading) loading.remove();
+  }
+};
+
+function loadBloggerContacts(){
+  const script = document.createElement('script');
+  script.src = 'https://riyangiting.blogspot.com/feeds/pages/default?alt=json-in-script&max-results=50&callback=__riyanContactFeed';
+  script.async = true;
+  script.onerror = () => {
+    const loading = $('#contactLoading');
+    if(loading) loading.remove();
+  };
+  document.head.appendChild(script);
+}
 
 // ===== Navigasi, active state, scroll-to-top =====
 const menuToggle = $('#menuToggle');
@@ -547,7 +710,7 @@ document.addEventListener('click', (event) => {
   }
 });
 
-const observedSections = ['top','quotes','kehidupunk','dreams','game','about'].map(id => document.getElementById(id)).filter(Boolean);
+const observedSections = ['top','quotes','kehidupunk','dreams','game','about','contact'].map(id => document.getElementById(id)).filter(Boolean);
 const navAnchors = $$('.nav-links a');
 const observer = new IntersectionObserver(entries => {
   const visible = entries.filter(e => e.isIntersecting).sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
@@ -565,4 +728,6 @@ renderQuotes();
 setSpotlight();
 setPunkQuote();
 loadDreamWall();
+showSharedDreamFromUrl();
+loadBloggerContacts();
 $('#year').textContent = new Date().getFullYear();
