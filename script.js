@@ -26,7 +26,13 @@ const quotes = [
   {cat:'Visi', color:'#b9afea', text:'Visi memberi arah saat mood berubah. Karena tujuan yang jelas lebih tahan lama daripada semangat sesaat.'},
   {cat:'Visi', color:'#b9afea', text:'Kalau belum bisa mengubah dunia, rapikan dulu satu sudut kehidupanmu.'},
   {cat:'Impian', color:'#b6e7d8', text:'Impian butuh ruang untuk tumbuh, tetapi juga kalender untuk dikerjakan.'},
-  {cat:'Impian', color:'#b6e7d8', text:'Boleh bermimpi besar, asal langkah besok pagi tetap punya bentuk.'}
+  {cat:'Impian', color:'#b6e7d8', text:'Boleh bermimpi besar, asal langkah besok pagi tetap punya bentuk.'},
+  {cat:'KehiduPUNK', color:'#f7e85d', text:'KehiduPUNK bukan soal kelihatan paling liar. Kadang justru soal berani hidup dengan kepala sendiri.'},
+  {cat:'KehiduPUNK', color:'#f7e85d', text:'Boleh berisik di panggung. Jangan kosong di kepala.'},
+  {cat:'KehiduPUNK', color:'#f7e85d', text:'PUNK yang paling susah bukan melawan semua orang, tetapi menjaga prinsip saat jalan pintas terlihat lebih enak.'},
+  {cat:'KehiduPUNK', color:'#f7e85d', text:'Mohawk bisa turun, sepatu bisa usang. Keberanian untuk tidak sekadar ikut arus jangan ikut luntur.'},
+  {cat:'KehiduPUNK', color:'#f7e85d', text:'DIY bukan cuma bikin sendiri. Kadang itu keberanian membuat jalan ketika pintu yang tersedia tidak cocok.'},
+  {cat:'KehiduPUNK', color:'#f7e85d', text:'KehiduPUNK: keras pada prinsip, tetap waras pada manusia.'}
 ];
 
 const dreamLines = [
@@ -36,142 +42,527 @@ const dreamLines = [
   'Mimpi tidak wajib terlihat masuk akal bagi semua orang.',
   'Mulai dari kecil bukan masalah. Berhenti mencoba yang bikin jauh.',
   'Kamu boleh mengubah rencana tanpa mengkhianati tujuan.',
-  'Hari biasa pun bisa jadi bagian dari cerita besar.'
+  'Hari biasa pun bisa jadi bagian dari cerita besar.',
+  'Bintangnya tertangkap. Masalah hidupnya belum, ya.',
+  'Lumayan. Refleksmu lebih cepat daripada balasan chat dia.',
+  'Satu bintang lagi. Ambisi tidak menerima cicilan rebahan.'
 ];
 
-const grid = document.getElementById('quotesGrid');
-const filters = document.getElementById('filters');
-const toast = document.getElementById('toast');
+const teaseLines = [
+  'eh, hampir 😌',
+  'kok percaya sih ⭐',
+  'aku kabur dulu ya~',
+  'refleks mana refleks?',
+  'bukan kamu doang yang bisa ghosting.',
+  'deket... tapi tidak direstui semesta.',
+  'bintang: 1, kamu: ya begitulah.'
+];
+
+const $ = (selector) => document.querySelector(selector);
+const $$ = (selector) => [...document.querySelectorAll(selector)];
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const toast = $('#toast');
 let activeCategory = 'Semua';
 
-function showToast(text){
+function showToast(text, duration = 1800){
   toast.textContent = text;
   toast.classList.add('show');
   clearTimeout(showToast.timer);
-  showToast.timer = setTimeout(()=>toast.classList.remove('show'), 1700);
+  showToast.timer = setTimeout(() => toast.classList.remove('show'), duration);
 }
 
-function copyText(text){
-  navigator.clipboard?.writeText(text).then(()=>showToast('Quote disalin ✦')).catch(()=>showToast('Tidak bisa menyalin otomatis.'));
+async function copyText(text, success = 'Quote disalin ✦'){
+  try{
+    await navigator.clipboard.writeText(text);
+    showToast(success);
+  }catch{
+    showToast('Tidak bisa menyalin otomatis. Browser lagi ngambek.');
+  }
+}
+
+function shuffled(arr){
+  return [...arr].sort(() => Math.random() - .5);
+}
+
+function randomFrom(arr){
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
+function randomQuote(){
+  return randomFrom(quotes);
 }
 
 function renderFilters(){
-  const cats = ['Semua', ...new Set(quotes.map(q=>q.cat))];
-  filters.innerHTML = cats.map(cat => `<button class="filter-btn ${cat===activeCategory?'active':''}" data-cat="${cat}">${cat}</button>`).join('');
-  filters.querySelectorAll('button').forEach(btn=>btn.addEventListener('click',()=>{
+  const filters = $('#filters');
+  const cats = ['Semua', ...new Set(quotes.map(q => q.cat))];
+  filters.innerHTML = cats.map(cat => `<button class="filter-btn ${cat === activeCategory ? 'active' : ''}" data-cat="${cat}">${cat}</button>`).join('');
+  filters.querySelectorAll('button').forEach(btn => btn.addEventListener('click', () => {
     activeCategory = btn.dataset.cat;
     renderFilters();
     renderQuotes();
   }));
 }
 
-function shuffled(arr){
-  return [...arr].sort(()=>Math.random()-.5);
-}
-
 function renderQuotes(order = quotes){
-  const data = activeCategory === 'Semua' ? order : order.filter(q=>q.cat===activeCategory);
-  grid.innerHTML = data.map((q,i)=>`
-    <article class="mini-quote glass" style="background:linear-gradient(145deg, rgba(255,255,255,.78), ${q.color}22)">
+  const grid = $('#quotesGrid');
+  const data = activeCategory === 'Semua' ? order : order.filter(q => q.cat === activeCategory);
+  grid.innerHTML = data.map(q => `
+    <article class="mini-quote glass" style="background:linear-gradient(145deg, rgba(255,255,255,.82), ${q.color}26)">
       <div>
         <small><span class="cat-dot" style="background:${q.color}"></span>${q.cat}</small>
         <p>“${q.text}”</p>
       </div>
       <small>Riyan Giting Universe</small>
-      <button class="copy-mini" data-copy="${encodeURIComponent(q.text)}" aria-label="Salin quote">⧉</button>
-    </article>
-  `).join('');
-  grid.querySelectorAll('.copy-mini').forEach(btn=>btn.addEventListener('click',()=>copyText(decodeURIComponent(btn.dataset.copy))));
+      <button class="copy-mini" data-copy="${encodeURIComponent(q.text)}" aria-label="Salin quote" title="Salin">⧉</button>
+    </article>`).join('');
+  grid.querySelectorAll('.copy-mini').forEach(btn => btn.addEventListener('click', () => copyText(decodeURIComponent(btn.dataset.copy))));
 }
 
-function randomQuote(){
-  return quotes[Math.floor(Math.random()*quotes.length)];
+function setSpotlight(forceQuote){
+  const q = forceQuote || randomQuote();
+  $('#spotlightCategory').textContent = q.cat.toUpperCase();
+  $('#spotlightQuote').textContent = `“${q.text}”`;
+  $('#spotlightCard').style.background = `linear-gradient(145deg, rgba(255,255,255,.88), ${q.color}32)`;
 }
 
-function setSpotlight(){
-  const q = randomQuote();
-  document.getElementById('spotlightCategory').textContent = q.cat.toUpperCase();
-  document.getElementById('spotlightQuote').textContent = `“${q.text}”`;
-  document.getElementById('spotlightCard').style.background = `linear-gradient(145deg, rgba(255,255,255,.86), ${q.color}26)`;
-}
-
-document.getElementById('nextSpotlight').addEventListener('click', setSpotlight);
-document.getElementById('copySpotlight').addEventListener('click',()=>copyText(document.getElementById('spotlightQuote').textContent.replace(/[“”]/g,'')));
-document.getElementById('heroRandomBtn').addEventListener('click',()=>{
+$('#nextSpotlight').addEventListener('click', () => setSpotlight());
+$('#copySpotlight').addEventListener('click', () => copyText($('#spotlightQuote').textContent.replace(/[“”]/g, '')));
+$('#heroRandomBtn').addEventListener('click', () => {
   setSpotlight();
-  document.getElementById('spotlightCard').scrollIntoView({behavior:'smooth',block:'center'});
+  $('#spotlightCard').scrollIntoView({behavior: reduceMotion ? 'auto' : 'smooth', block:'center'});
 });
-document.getElementById('shuffleBtn').addEventListener('click',()=>renderQuotes(shuffled(quotes)));
+$('#shuffleBtn').addEventListener('click', () => {
+  renderQuotes(shuffled(quotes));
+  showToast('Mesin quotenya dikocok. Semoga tidak mabuk.');
+});
 
-document.getElementById('mascot').addEventListener('click',()=>{
+let mascotClicks = 0;
+const mascotFaces = ['•ᴗ•', '≧◡≦', '•̀ᴗ•́', '¬‿¬', 'ᵔᴗᵔ', 'ಠ‿ಠ'];
+$('#mascot').addEventListener('click', () => {
+  mascotClicks++;
   const q = randomQuote();
-  document.getElementById('mascotSpeech').textContent = `“${q.text}”`;
+  $('#mascotSpeech').textContent = mascotClicks % 6 === 0 ? '“Iya iya, aku tahu aku gemes. Tangannya istirahat dulu 😭”' : `“${q.text}”`;
+  $('#mascotFace').textContent = randomFrom(mascotFaces);
 });
 
-// Dream saver
-const dreamInput = document.getElementById('dreamInput');
-const dreamNote = document.getElementById('dreamNote');
-const savedDream = localStorage.getItem('riyanLittleUniverseDream');
-if(savedDream) dreamNote.textContent = `Mimpi tersimpan: “${savedDream}”`;
-document.getElementById('saveDream').addEventListener('click',()=>{
+const punkQuotes = quotes.filter(q => q.cat === 'KehiduPUNK');
+function setPunkQuote(){
+  const q = randomFrom(punkQuotes);
+  $('#punkSpotlight').textContent = `“${q.text}”`;
+  $('#punkQuoteBox').animate?.([
+    {transform:'rotate(1deg) scale(.985)'},
+    {transform:'rotate(-.7deg) scale(1.01)'},
+    {transform:'rotate(1deg) scale(1)'}
+  ], {duration:300, easing:'ease-out'});
+}
+$('#punkRandomBtn').addEventListener('click', setPunkQuote);
+
+// ===== GitHub-only Dinding Mimpi =====
+// Saat website berada di https://OWNER.github.io/REPO/, owner dan repo terdeteksi otomatis.
+// Untuk custom domain, isi manual dua nilai berikut.
+const GITHUB_FALLBACK = {
+  owner: '',
+  repo: ''
+};
+
+function detectGitHubRepo(){
+  if(GITHUB_FALLBACK.owner && GITHUB_FALLBACK.repo) return GITHUB_FALLBACK;
+  const host = location.hostname.toLowerCase();
+  if(!host.endsWith('.github.io')) return null;
+  const owner = host.split('.')[0];
+  const parts = location.pathname.split('/').filter(Boolean);
+  const repo = parts[0] || `${owner}.github.io`;
+  return {owner, repo};
+}
+
+function getDreamParts(body = ''){
+  const dreamMatch = body.match(/<!-- DREAM_TEXT_START -->([\s\S]*?)<!-- DREAM_TEXT_END -->/i);
+  const aliasMatch = body.match(/<!-- DREAM_ALIAS_START -->([\s\S]*?)<!-- DREAM_ALIAS_END -->/i);
+  if(!dreamMatch) return null;
+  return {
+    text: dreamMatch[1].trim().replace(/^>\s?/gm, '').slice(0, 280),
+    alias: (aliasMatch?.[1] || 'Anonim').trim().slice(0, 30) || 'Anonim'
+  };
+}
+
+function makeDreamCard(issue){
+  const data = getDreamParts(issue.body || '');
+  if(!data) return null;
+  const article = document.createElement('article');
+  article.className = 'dream-item';
+
+  const text = document.createElement('p');
+  text.textContent = `“${data.text}”`;
+
+  const meta = document.createElement('div');
+  meta.className = 'dream-meta';
+  const alias = document.createElement('span');
+  alias.textContent = `— ${data.alias}`;
+  const link = document.createElement('a');
+  link.href = issue.html_url;
+  link.target = '_blank';
+  link.rel = 'noopener';
+  link.textContent = new Intl.DateTimeFormat('id-ID', {day:'numeric', month:'short', year:'numeric'}).format(new Date(issue.created_at));
+  link.title = 'Buka sumber di GitHub';
+  meta.append(alias, link);
+  article.append(text, meta);
+  return article;
+}
+
+async function loadDreamWall(force = false){
+  const config = detectGitHubRepo();
+  const feed = $('#dreamFeed');
+  const status = $('#dreamWallStatus');
+  const allLink = $('#allDreamsLink');
+
+  if(!config){
+    status.textContent = 'aktif setelah deploy';
+    feed.innerHTML = '<div class="dream-empty"><span>☁️</span><p>Dinding publik akan aktif otomatis setelah website dibuka dari GitHub Pages.</p></div>';
+    return;
+  }
+
+  const issueSearch = `https://github.com/${config.owner}/${config.repo}/issues?q=is%3Aissue+is%3Aopen+in%3Atitle+%22%5BMIMPI%5D%22`;
+  allLink.href = issueSearch;
+  allLink.hidden = false;
+
+  const cacheKey = `littleUniverseDreamWall:${config.owner}/${config.repo}`;
+  if(!force){
+    try{
+      const cached = JSON.parse(sessionStorage.getItem(cacheKey) || 'null');
+      if(cached && Date.now() - cached.time < 180000){
+        renderDreamIssues(cached.issues, feed, status);
+        return;
+      }
+    }catch{}
+  }
+
+  status.textContent = 'menyambung ke GitHub...';
+  feed.innerHTML = '<div class="dream-loading"><span>☁️</span><p>Lagi nyari mimpi yang nyangkut di GitHub...</p></div>';
+
+  try{
+    const url = `https://api.github.com/repos/${encodeURIComponent(config.owner)}/${encodeURIComponent(config.repo)}/issues?state=open&sort=created&direction=desc&per_page=100`;
+    const response = await fetch(url, {headers:{Accept:'application/vnd.github+json'}});
+    if(!response.ok) throw new Error(`GitHub API ${response.status}`);
+    const raw = await response.json();
+    const issues = raw.filter(item => !item.pull_request && /^\[MIMPI\]/i.test(item.title || '') && /DREAM_TEXT_START/.test(item.body || '')).slice(0, 20);
+    sessionStorage.setItem(cacheKey, JSON.stringify({time:Date.now(), issues}));
+    renderDreamIssues(issues, feed, status);
+  }catch(err){
+    console.warn(err);
+    status.textContent = 'GitHub lagi malu-malu';
+    feed.innerHTML = '<div class="dream-empty"><span>🌧️</span><p>Dinding belum bisa dimuat. Coba segarkan lagi atau buka semua titipan langsung di GitHub.</p></div>';
+  }
+}
+
+function renderDreamIssues(issues, feed = $('#dreamFeed'), status = $('#dreamWallStatus')){
+  feed.replaceChildren();
+  if(!issues.length){
+    status.textContent = 'masih kosong';
+    const empty = document.createElement('div');
+    empty.className = 'dream-empty';
+    empty.innerHTML = '<span>☁️</span><p>Belum ada mimpi publik. Kalau kamu jadi yang pertama, sejarah kecil dimulai dari tombol di sebelah.</p>';
+    feed.append(empty);
+    return;
+  }
+  status.textContent = `${issues.length} titipan terbaru`;
+  issues.forEach(issue => {
+    const card = makeDreamCard(issue);
+    if(card) feed.append(card);
+  });
+}
+
+const dreamInput = $('#dreamInput');
+const dreamAlias = $('#dreamAlias');
+const privateDream = $('#privateDream');
+const savedPrivateDream = localStorage.getItem('riyanLittleUniverseDream');
+if(savedPrivateDream) privateDream.textContent = `Mimpi pribadi tersimpan: “${savedPrivateDream}”`;
+
+dreamInput.addEventListener('input', () => $('#dreamCount').textContent = dreamInput.value.length);
+
+$('#savePrivateDream').addEventListener('click', () => {
   const value = dreamInput.value.trim();
-  if(!value) return showToast('Tulis mimpinya dulu.');
+  if(!value) return showToast('Tulis mimpinya dulu. Semesta belum bisa membaca pikiran.');
   localStorage.setItem('riyanLittleUniverseDream', value);
-  dreamNote.textContent = `Mimpi tersimpan: “${value}”`;
-  dreamInput.value = '';
-  showToast('Mimpi disimpan di browser ✦');
+  privateDream.textContent = `Mimpi pribadi tersimpan: “${value}”`;
+  showToast('Disimpan pribadi di browser ini ☁️');
 });
 
-// Mini game
-const board = document.getElementById('gameBoard');
-const star = document.getElementById('starTarget');
-const placeholder = document.getElementById('gamePlaceholder');
-const scoreEl = document.getElementById('score');
-const bestEl = document.getElementById('bestScore');
-const gameMessage = document.getElementById('gameMessage');
-const startBtn = document.getElementById('startGame');
+$('#publishDream').addEventListener('click', () => {
+  const dream = dreamInput.value.trim();
+  const alias = dreamAlias.value.trim() || 'Anonim';
+  if(!dream) return showToast('Tulis mimpinya dulu. Yang kosong cuma boleh saldo, eh jangan juga.');
+
+  const config = detectGitHubRepo();
+  if(!config){
+    copyText(dream, 'Website belum di GitHub Pages. Mimpinya saya salin dulu.');
+    return;
+  }
+
+  const cleanTitle = dream.replace(/\s+/g, ' ').slice(0, 58);
+  const title = `[MIMPI] ${cleanTitle}${dream.length > 58 ? '…' : ''}`;
+  const body = [
+    '<!-- little-universe-dream -->',
+    '### ☁️ Titipan Mimpi',
+    '',
+    '<!-- DREAM_TEXT_START -->',
+    `> ${dream.replace(/\n/g, '\n> ')}`,
+    '<!-- DREAM_TEXT_END -->',
+    '',
+    '<!-- DREAM_ALIAS_START -->',
+    alias,
+    '<!-- DREAM_ALIAS_END -->',
+    '',
+    '_Dititipkan dari Riyan\'s Little Universe — Riyan Sumarno a.k.a Riyan Giting._'
+  ].join('\n');
+
+  const url = `https://github.com/${config.owner}/${config.repo}/issues/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`;
+  window.open(url, '_blank', 'noopener');
+  showToast('GitHub dibuka. Tinggal klik “Submit new issue” di sana ✦', 3200);
+});
+
+$('#refreshDreamWall').addEventListener('click', () => loadDreamWall(true));
+
+// ===== Mini game: bintang bandel =====
+const board = $('#gameBoard');
+const star = $('#starTarget');
+const fakeStar = $('#fakeStar');
+const placeholder = $('#gamePlaceholder');
+const scoreEl = $('#score');
+const comboEl = $('#combo');
+const timeEl = $('#gameTime');
+const bestEl = $('#bestScore');
+const gameMessage = $('#gameMessage');
+const startBtn = $('#startGame');
 let score = 0;
+let comboHits = 0;
+let comboMultiplier = 1;
 let best = Number(localStorage.getItem('riyanStarBest') || 0);
 let playing = false;
-let gameTimer;
+let endAt = 0;
+let timerFrame = 0;
+let messageTimer = 0;
+let fakeTimer = 0;
 bestEl.textContent = best;
 
-function moveStar(){
-  const pad = 16;
-  const maxX = board.clientWidth - star.offsetWidth - pad;
-  const maxY = board.clientHeight - star.offsetHeight - 70;
-  star.style.left = `${Math.max(pad, Math.random()*maxX)}px`;
-  star.style.top = `${Math.max(pad, Math.random()*maxY)}px`;
+function placeElement(el){
+  const pad = 14;
+  const maxX = Math.max(pad, board.clientWidth - el.offsetWidth - pad);
+  const maxY = Math.max(pad, board.clientHeight - el.offsetHeight - 68);
+  el.style.left = `${pad + Math.random() * Math.max(0, maxX - pad)}px`;
+  el.style.top = `${pad + Math.random() * Math.max(0, maxY - pad)}px`;
 }
+
 function flashMessage(text){
+  clearTimeout(messageTimer);
   gameMessage.textContent = text;
   gameMessage.classList.add('show');
-  setTimeout(()=>gameMessage.classList.remove('show'), 900);
+  messageTimer = setTimeout(() => gameMessage.classList.remove('show'), 850);
 }
+
+function updateCombo(){
+  comboMultiplier = Math.min(4, 1 + Math.floor(comboHits / 4));
+  comboEl.textContent = `×${comboMultiplier}`;
+}
+
+function maybeShowFake(){
+  clearTimeout(fakeTimer);
+  fakeStar.hidden = true;
+  if(score < 5 || Math.random() > .48) return;
+  fakeStar.hidden = false;
+  placeElement(fakeStar);
+  fakeTimer = setTimeout(() => { fakeStar.hidden = true; }, 850 + Math.random() * 700);
+}
+
+function tickGame(){
+  if(!playing) return;
+  const remaining = Math.max(0, endAt - performance.now());
+  timeEl.textContent = (remaining / 1000).toFixed(1);
+  star.classList.toggle('panic', remaining < 5000);
+  if(remaining <= 0){
+    endGame();
+    return;
+  }
+  timerFrame = requestAnimationFrame(tickGame);
+}
+
+function gradeGame(value){
+  if(value >= 35) return 'Kamu mencurigakan. Bintangnya mau lapor polisi refleks. ⭐';
+  if(value >= 24) return 'Gila, lumayan brutal. Bintang-bintangnya trauma.';
+  if(value >= 14) return 'Bagus. Tidak jago banget, tapi cukup buat sombong tipis-tipis.';
+  if(value >= 7) return 'Ada bakat. Bakatnya masih buffering.';
+  return 'Bintangnya aman. Harga dirimu yang perlu dievaluasi 😭';
+}
+
 function endGame(){
   playing = false;
+  cancelAnimationFrame(timerFrame);
+  clearTimeout(fakeTimer);
   star.hidden = true;
+  fakeStar.hidden = true;
+  star.classList.remove('panic');
   placeholder.style.display = 'grid';
-  placeholder.querySelector('p').textContent = `Selesai. Skor kamu ${score}. Mau ulang?`;
+  placeholder.querySelector('.big-star').textContent = score >= 14 ? '★' : '☆';
+  placeholder.querySelector('p').textContent = `Skor ${score}. ${gradeGame(score)}`;
   startBtn.textContent = 'Main Lagi';
-  if(score > best){ best = score; localStorage.setItem('riyanStarBest',best); bestEl.textContent=best; showToast('Best score baru ⭐'); }
+  timeEl.textContent = '0.0';
+  if(score > best){
+    best = score;
+    localStorage.setItem('riyanStarBest', best);
+    bestEl.textContent = best;
+    showToast('BEST SCORE BARU. Bintangnya tidak ikhlas ⭐', 2600);
+  }
 }
+
 function startGame(){
-  clearTimeout(gameTimer);
-  score = 0; scoreEl.textContent = 0; playing = true;
-  placeholder.style.display = 'none'; star.hidden = false; startBtn.textContent = 'Restart';
-  moveStar();
-  gameTimer = setTimeout(endGame, 15000);
+  cancelAnimationFrame(timerFrame);
+  clearTimeout(fakeTimer);
+  score = 0;
+  comboHits = 0;
+  updateCombo();
+  scoreEl.textContent = '0';
+  playing = true;
+  endAt = performance.now() + 18000;
+  placeholder.style.display = 'none';
+  star.hidden = false;
+  fakeStar.hidden = true;
+  startBtn.textContent = 'Restart';
+  placeElement(star);
+  tickGame();
 }
+
 startBtn.addEventListener('click', startGame);
-star.addEventListener('click',()=>{
+
+star.addEventListener('click', () => {
   if(!playing) return;
-  score++; scoreEl.textContent = score;
-  flashMessage(dreamLines[Math.floor(Math.random()*dreamLines.length)]);
-  moveStar();
+  comboHits++;
+  updateCombo();
+  score += comboMultiplier;
+  scoreEl.textContent = score;
+  flashMessage(randomFrom(dreamLines));
+  placeElement(star);
+  maybeShowFake();
 });
+
+star.addEventListener('pointerenter', (event) => {
+  if(!playing || reduceMotion || event.pointerType === 'touch' || score < 3) return;
+  const dodgeChance = Math.min(.72, .24 + score * .014);
+  if(Math.random() < dodgeChance){
+    placeElement(star);
+    comboHits = Math.max(0, comboHits - 1);
+    updateCombo();
+    flashMessage(randomFrom(teaseLines));
+  }
+});
+
+fakeStar.addEventListener('click', () => {
+  if(!playing) return;
+  score = Math.max(0, score - 2);
+  scoreEl.textContent = score;
+  comboHits = 0;
+  updateCombo();
+  fakeStar.hidden = true;
+  flashMessage('YAH KETIPU 🌟 skor -2. Bintang palsu juga butuh validasi.');
+});
+
+// ===== Tombol bandel =====
+const annoyButtons = $('#annoyButtons');
+const yesBtn = $('#yesBtn');
+const noBtn = $('#noBtn');
+let noEscapes = 0;
+let yesScale = 1;
+
+function escapeNoButton(){
+  if(reduceMotion || noEscapes >= 7) return;
+  noEscapes++;
+  const rect = annoyButtons.getBoundingClientRect();
+  const maxX = Math.max(0, rect.width - noBtn.offsetWidth);
+  const maxY = Math.max(0, rect.height - noBtn.offsetHeight);
+  noBtn.style.position = 'absolute';
+  noBtn.style.left = `${Math.random() * maxX}px`;
+  noBtn.style.top = `${Math.random() * maxY}px`;
+  yesScale = Math.min(1.9, yesScale + .09);
+  yesBtn.style.transform = `scale(${yesScale})`;
+
+  const lines = [
+    'eh kok mau klik itu?',
+    'salah tombol kak 😭',
+    'yang pink lebih masuk akal.',
+    'NO sedang cuti.',
+    'usaha yang bagus. tetap gagal.',
+    'tombolnya punya hak untuk kabur.',
+    'yaudah... capek aku.'
+  ];
+  $('#annoyText').textContent = lines[Math.min(noEscapes - 1, lines.length - 1)];
+  $('#annoyFace').textContent = randomFrom(['(¬‿¬)', '(◕‿◕)', '(づ｡◕‿‿◕｡)づ', '(˵ ͡° ͜ʖ ͡°˵)', '(ง •̀_•́)ง']);
+
+  if(noEscapes >= 7){
+    noBtn.textContent = 'iya deh 😭';
+    noBtn.style.background = '#fff0f6';
+    noBtn.style.color = '#e95d92';
+  }
+}
+
+noBtn.addEventListener('pointerenter', escapeNoButton);
+noBtn.addEventListener('pointerdown', (event) => {
+  if(event.pointerType === 'touch' && !reduceMotion){
+    event.preventDefault();
+    escapeNoButton();
+  }
+});
+noBtn.addEventListener('click', () => {
+  if(!reduceMotion && noEscapes < 7){
+    escapeNoButton();
+    return;
+  }
+  $('#annoyResult').textContent = 'Nah. Akhirnya kita sepakat secara demokratis versi website ini. 💗';
+  $('#annoyFace').textContent = '(づ￣ ³￣)づ';
+});
+
+yesBtn.addEventListener('click', () => {
+  $('#annoyResult').textContent = noEscapes ? `Pilihan bijak setelah ${noEscapes} kali negosiasi. Semesta bangga. ✨` : 'Cepat sekali. Tidak ada perlawanan. Aku suka. ✨';
+  $('#annoyFace').textContent = '٩(◕‿◕｡)۶';
+  yesBtn.textContent = 'AKU JUGA BETAH 💗';
+  showToast('Achievement unlocked: gampang dirayu website ✦');
+});
+
+// ===== Navigasi, active state, scroll-to-top =====
+const menuToggle = $('#menuToggle');
+const navLinks = $('#navLinks');
+menuToggle.addEventListener('click', () => {
+  const open = navLinks.classList.toggle('open');
+  menuToggle.setAttribute('aria-expanded', String(open));
+  menuToggle.textContent = open ? '✕' : '☰';
+});
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  navLinks.classList.remove('open');
+  menuToggle.setAttribute('aria-expanded', 'false');
+  menuToggle.textContent = '☰';
+}));
+
+document.addEventListener('click', (event) => {
+  if(!event.target.closest('.nav') && navLinks.classList.contains('open')){
+    navLinks.classList.remove('open');
+    menuToggle.setAttribute('aria-expanded', 'false');
+    menuToggle.textContent = '☰';
+  }
+});
+
+const observedSections = ['top','quotes','kehidupunk','dreams','game','about'].map(id => document.getElementById(id)).filter(Boolean);
+const navAnchors = $$('.nav-links a');
+const observer = new IntersectionObserver(entries => {
+  const visible = entries.filter(e => e.isIntersecting).sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
+  if(!visible) return;
+  navAnchors.forEach(a => a.classList.toggle('active', a.getAttribute('href') === `#${visible.target.id}`));
+}, {rootMargin:'-35% 0px -55% 0px', threshold:[0,.2,.5]});
+observedSections.forEach(section => observer.observe(section));
+
+const scrollTopBtn = $('#scrollTop');
+window.addEventListener('scroll', () => scrollTopBtn.classList.toggle('show', window.scrollY > 620), {passive:true});
+scrollTopBtn.addEventListener('click', () => window.scrollTo({top:0, behavior:reduceMotion ? 'auto' : 'smooth'}));
 
 renderFilters();
 renderQuotes();
 setSpotlight();
-document.getElementById('year').textContent = new Date().getFullYear();
+setPunkQuote();
+loadDreamWall();
+$('#year').textContent = new Date().getFullYear();

@@ -4,65 +4,58 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#ff8fb7" />
-  <meta name="description" content="Koleksi quotes receh, nyeleneh, serius, mimpi, cinta, kehidupan, dan cita-cita karya Riyan Sumarno a.k.a Riyan Giting." />
-  <title>Riyan's Little Universe ✦ Quotes Kawaii</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <meta name="description" content="Semesta quotes receh, nyeleneh, serius, KehiduPUNK, mimpi, cinta, kehidupan, mini game, dan Dinding Mimpi karya Riyan Sumarno a.k.a Riyan Giting." />
+  <title>Riyan's Little Universe ✦ Kawaii, Receh & KehiduPUNK</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="sky-decor" aria-hidden="true">
-    <span class="cloud c1"></span>
-    <span class="cloud c2"></span>
-    <span class="cloud c3"></span>
-    <span class="spark s1">✦</span>
-    <span class="spark s2">✧</span>
-    <span class="spark s3">✦</span>
-    <span class="spark s4">⋆</span>
+    <span class="cloud c1"></span><span class="cloud c2"></span><span class="cloud c3"></span>
+    <span class="spark s1">✦</span><span class="spark s2">✧</span><span class="spark s3">✦</span><span class="spark s4">⋆</span>
+    <span class="tiny-float tf1">♡</span><span class="tiny-float tf2">★</span><span class="tiny-float tf3">☻</span>
   </div>
 
-  <header class="hero container">
-    <nav class="nav glass">
+  <div class="nav-wrap">
+    <nav class="nav container glass" aria-label="Navigasi utama">
       <a class="brand" href="#top" aria-label="Riyan's Little Universe">
         <span class="brand-icon">☁️</span>
-        <span>Riyan's Little Universe</span>
+        <span class="brand-copy"><strong>Little Universe</strong><small>by Riyan Giting</small></span>
       </a>
-      <div class="nav-links">
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Buka menu">☰</button>
+      <div class="nav-links" id="navLinks">
+        <a href="#top">Beranda</a>
         <a href="#quotes">Quotes</a>
-        <a href="#game">Mini Game</a>
+        <a href="#kehidupunk">KehiduPUNK</a>
+        <a href="#dreams">Titip Mimpi</a>
+        <a href="#game">Game</a>
         <a href="#about">Pembuat</a>
       </div>
     </nav>
+  </div>
 
-    <section class="hero-grid" id="top">
+  <header class="hero container" id="top">
+    <section class="hero-grid">
       <div class="hero-copy">
         <p class="eyebrow">✨ sedikit receh, sedikit serius, banyak mimpi</p>
         <h1>Selamat datang di <span>semesta kecil</span> milik orang yang kebanyakan mikir.</h1>
-        <p class="lead">Tempat quotes nyeleneh, hidup, cinta, ambisi, impian, super power, dan kalimat random yang kadang lebih jujur daripada status WhatsApp.</p>
+        <p class="lead">Tempat quotes nyeleneh, hidup, cinta, ambisi, impian, KehiduPUNK, super power, dan kalimat random yang kadang lebih jujur daripada status WhatsApp.</p>
         <div class="hero-actions">
-          <button class="btn primary" id="heroRandomBtn">Kasih aku quote random</button>
-          <a class="btn soft" href="#quotes">Jelajahi quotes ↓</a>
+          <button class="btn primary" id="heroRandomBtn">Kasih aku quote random ✦</button>
+          <a class="btn soft" href="#dreams">Titip satu mimpi ☁️</a>
         </div>
-        <p class="signature">Dibuat oleh <strong>Riyan Sumarno</strong> <span>a.k.a <a href="http://riyangiting.blogspot.com" target="_blank" rel="nofollow">Riyan Giting<a/></span></p>
+        <p class="signature">Dibuat oleh <strong>Riyan Sumarno</strong> <span>a.k.a <a href="http://riyangiting.blogspot.com" target="_blank" rel="nofollow noopener">Riyan Giting</a></span></p>
       </div>
 
-      <div class="hero-art glass" aria-label="Ilustrasi kawaii">
-        <div class="moon">☾</div>
-        <div class="planet">🪐</div>
-        <div class="mascot" id="mascot" title="Klik aku">
-          <div class="ears"><span></span><span></span></div>
-          <div class="head">
-            <div class="face">•ᴗ•</div>
-            <div class="blush left"></div>
-            <div class="blush right"></div>
-          </div>
-          <div class="body">RG</div>
-        </div>
-        <div class="speech" id="mascotSpeech">"Mikir boleh. Menyerah jangan dulu."</div>
-        <div class="float-heart h1">♡</div>
-        <div class="float-heart h2">♥</div>
-        <div class="float-heart h3">♡</div>
+      <div class="hero-art glass" aria-label="Ilustrasi maskot kawaii">
+        <div class="moon">☾</div><div class="planet">🪐</div>
+        <button class="mascot" id="mascot" title="Klik aku. Aku nggak gigit." aria-label="Klik maskot untuk quote random">
+          <span class="ears"><span></span><span></span></span>
+          <span class="head"><span class="face" id="mascotFace">•ᴗ•</span><span class="blush left"></span><span class="blush right"></span></span>
+          <span class="body">RG</span>
+        </button>
+        <div class="speech" id="mascotSpeech">“Mikir boleh. Menyerah jangan dulu.”</div>
+        <div class="float-heart h1">♡</div><div class="float-heart h2">♥</div><div class="float-heart h3">♡</div>
+        <div class="tap-hint">psst... klik kelincinya 👆</div>
       </div>
     </section>
   </header>
@@ -71,73 +64,138 @@
     <section class="quote-stage container" aria-live="polite">
       <div class="quote-card glass" id="spotlightCard">
         <span class="quote-badge" id="spotlightCategory">RECEH</span>
-        <blockquote id="spotlightQuote">"Hidup itu kayak printer. Kadang macet bukan karena rusak, cuma butuh dibuka pelan-pelan."</blockquote>
+        <blockquote id="spotlightQuote">“Hidup itu kayak printer. Kadang macet bukan karena rusak, cuma butuh dibuka pelan-pelan.”</blockquote>
         <div class="quote-footer">
           <span>— Riyan Giting Universe</span>
           <div class="card-actions">
-            <button class="icon-btn" id="copySpotlight" aria-label="Salin quote">⧉</button>
-            <button class="icon-btn" id="nextSpotlight" aria-label="Quote berikutnya">↻</button>
+            <button class="icon-btn" id="copySpotlight" aria-label="Salin quote" title="Salin">⧉</button>
+            <button class="icon-btn" id="nextSpotlight" aria-label="Quote berikutnya" title="Acak lagi">↻</button>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="quotes-section container" id="quotes">
+    <section class="quotes-section container section-anchor" id="quotes">
       <div class="section-head">
-        <div>
-          <p class="eyebrow">pilih sesuai kadar hidup hari ini</p>
-          <h2>Quote vending machine</h2>
-        </div>
+        <div><p class="eyebrow">pilih sesuai kadar hidup hari ini</p><h2>Quote vending machine</h2></div>
         <button class="btn tiny" id="shuffleBtn">Acak semua ✦</button>
       </div>
-
-      <div class="filters" id="filters"></div>
+      <div class="filters" id="filters" aria-label="Filter kategori quotes"></div>
       <div class="quotes-grid" id="quotesGrid"></div>
     </section>
 
-    <section class="game-section container" id="game">
+    <section class="punk-section container section-anchor" id="kehidupunk">
+      <div class="punk-card glass">
+        <div class="punk-badge">⚡ KEHIDUPUNK ⚡</div>
+        <div class="punk-grid">
+          <div>
+            <p class="eyebrow punk-eyebrow">bukan typo. memang KehiduPUNK.</p>
+            <h2>Berisik secukupnya.<br>Berprinsip sepenuhnya.</h2>
+            <p>KehiduPUNK di semesta ini bukan kostum. Ia jadi sudut kecil untuk quote tentang keberanian berpikir sendiri, DIY, prinsip, kebebasan, dan tetap manusia di tengah kebisingan.</p>
+            <button class="btn punk-btn" id="punkRandomBtn">Kasih aku satu yang PUNK ⚡</button>
+          </div>
+          <div class="punk-quote-box" id="punkQuoteBox" aria-live="polite">
+            <span class="punk-tape">RIYAN GITING</span>
+            <blockquote id="punkSpotlight">“KehiduPUNK bukan soal kelihatan paling liar. Kadang justru soal berani hidup dengan kepala sendiri.”</blockquote>
+            <div class="punk-doodles" aria-hidden="true">✕ ⚡ ☠︎ ★ ✕</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="dream-section container section-anchor" id="dreams">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">github-only • tanpa database tambahan</p>
+          <h2>Titip Mimpi ke Semesta ☁️</h2>
+        </div>
+        <button class="btn tiny" id="refreshDreamWall">Segarkan dinding ↻</button>
+      </div>
+
+      <div class="dream-layout">
+        <div class="dream-card glass">
+          <div>
+            <p class="eyebrow">tulis, titip, lalu biarkan dibaca</p>
+            <h3>Satu mimpi. Serius atau receh, bebas.</h3>
+            <p>Website akan menyiapkan GitHub Issue publik berisi mimpi Anda. Setelah Anda menekan <strong>Submit new issue</strong> di GitHub, mimpi bisa muncul di Dinding Mimpi.</p>
+          </div>
+
+          <label class="field-label" for="dreamInput">Mimpi kamu</label>
+          <textarea id="dreamInput" maxlength="280" rows="5" placeholder="Contoh: semoga suatu hari punya usaha yang nggak cuma hidup, tapi juga menghidupi orang lain..."></textarea>
+          <div class="field-row">
+            <div>
+              <label class="field-label" for="dreamAlias">Nama panggilan di kartu <span>(opsional)</span></label>
+              <input id="dreamAlias" maxlength="30" placeholder="Anonim juga boleh" />
+            </div>
+            <div class="char-counter"><span id="dreamCount">0</span>/280</div>
+          </div>
+
+          <div class="dream-actions">
+            <button class="btn primary" id="publishDream">Titip ke Dinding Publik ↗</button>
+            <button class="btn soft" id="savePrivateDream">Simpan pribadi</button>
+          </div>
+          <p class="privacy-note">Publik berarti benar-benar publik. Pengiriman memakai GitHub Issues sehingga GitHub meminta login, dan username GitHub pengirim tetap dapat terlihat pada halaman Issue.</p>
+          <div class="private-dream" id="privateDream">Belum ada mimpi pribadi yang disimpan di browser ini.</div>
+        </div>
+
+        <div class="dream-wall glass">
+          <div class="wall-head">
+            <div><span class="wall-icon">☁️</span><strong>Dinding Mimpi</strong></div>
+            <span class="wall-status" id="dreamWallStatus">Mencari titipan...</span>
+          </div>
+          <div class="dream-feed" id="dreamFeed" aria-live="polite">
+            <div class="dream-loading"><span>☁️</span><p>Lagi nyari mimpi yang nyangkut di GitHub...</p></div>
+          </div>
+          <a class="all-dreams-link" id="allDreamsLink" href="#" target="_blank" rel="noopener" hidden>Lihat semua titipan langsung di GitHub ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="game-section container section-anchor" id="game">
       <div class="game-copy">
-        <p class="eyebrow">mini game absurd tapi berguna</p>
-        <h2>Tangkap Bintang Mimpi ⭐</h2>
-        <p>Klik bintang yang muncul. Setiap bintang berisi kalimat singkat. Targetnya bukan menang—targetnya ingat kalau hidup masih punya banyak kemungkinan.</p>
+        <p class="eyebrow">mini game gemesin, makin lama makin nyebelin</p>
+        <h2>Tangkap Bintang Bandel ⭐</h2>
+        <p>Targetnya sederhana: klik bintangnya sebelum waktu habis. Masalahnya, setelah merasa kenal, dia mulai kabur. Kadang muncul bintang palsu. Jangan baper.</p>
         <div class="scoreboard glass">
-          <span>Skor: <strong id="score">0</strong></span>
-          <span>Best: <strong id="bestScore">0</strong></span>
+          <span>Skor <strong id="score">0</strong></span>
+          <span>Kombo <strong id="combo">×1</strong></span>
+          <span>Waktu <strong id="gameTime">18.0</strong>s</span>
+          <span>Best <strong id="bestScore">0</strong></span>
           <button class="btn tiny" id="startGame">Mulai</button>
         </div>
+        <p class="game-tip">Tip rahasia: semakin tinggi skor, semakin kurang ajar bintangnya.</p>
       </div>
       <div class="game-board glass" id="gameBoard">
         <div class="game-placeholder" id="gamePlaceholder">
-          <div class="big-star">☆</div>
-          <p>Tekan “Mulai”, lalu kejar bintangnya.</p>
+          <div class="big-star">☆</div><p>Tekan “Mulai”. Jangan percaya bintang yang mukanya terlalu polos.</p>
         </div>
-        <button class="star-target" id="starTarget" aria-label="Bintang" hidden>⭐</button>
+        <button class="star-target" id="starTarget" aria-label="Bintang asli" hidden>⭐</button>
+        <button class="fake-star" id="fakeStar" aria-label="Bintang mencurigakan" hidden>🌟</button>
         <div class="game-message" id="gameMessage"></div>
       </div>
     </section>
 
-    <section class="dream-section container">
-      <div class="dream-card glass">
-        <div>
-          <p class="eyebrow">buat diri sendiri di masa depan</p>
-          <h2>Tulis satu mimpi hari ini.</h2>
-          <p>Bukan untuk dipamerkan. Cuma supaya otak tahu: “Oh, ternyata kita masih mau menuju sesuatu.”</p>
+    <section class="annoy-section container section-anchor" id="bandel">
+      <div class="annoy-card glass" id="annoyCard">
+        <div class="annoy-face" id="annoyFace">(◕‿◕)</div>
+        <p class="eyebrow">tes kejujuran yang tidak menghargai penolakan</p>
+        <h2>Kamu betah di semesta ini?</h2>
+        <p id="annoyText">Jawab yang benar. Tombolnya punya perasaan.</p>
+        <div class="annoy-buttons" id="annoyButtons">
+          <button class="btn yes-btn" id="yesBtn">IYA, BETAH 💗</button>
+          <button class="btn no-btn" id="noBtn">nggak sih</button>
         </div>
-        <div class="dream-form">
-          <input id="dreamInput" maxlength="120" placeholder="Contoh: punya usaha yang stabil dan hidup yang tidak buru-buru..." />
-          <button class="btn primary" id="saveDream">Simpan mimpi</button>
-        </div>
-        <div class="dream-note" id="dreamNote">Belum ada mimpi yang disimpan di browser ini.</div>
+        <div class="annoy-result" id="annoyResult" aria-live="polite"></div>
       </div>
     </section>
 
-    <section class="about container" id="about">
+    <section class="about container section-anchor" id="about">
       <div class="about-card glass">
         <div class="avatar">RG</div>
         <div>
           <p class="eyebrow">tentang pembuat</p>
           <h2>Riyan Sumarno <span>a.k.a Riyan Giting</span></h2>
-          <p>Website kecil ini dibuat sebagai ruang digital yang tidak terlalu serius. Isinya campuran humor, refleksi, mimpi, cinta, ambisi, dan kebiasaan manusia yang suka memikirkan hidup pada jam-jam yang tidak diperlukan.</p>
+          <p>Website kecil ini dibuat sebagai ruang digital yang tidak terlalu serius. Isinya campuran humor, refleksi, mimpi, cinta, ambisi, KehiduPUNK, dan kebiasaan manusia yang suka memikirkan hidup pada jam-jam yang tidak diperlukan.</p>
         </div>
       </div>
     </section>
@@ -146,12 +204,12 @@
   <footer>
     <div class="container footer-inner">
       <p>© <span id="year"></span> Riyan Sumarno a.k.a Riyan Giting.</p>
-      <p>Made with kopi, pikiran random, dan sedikit CSS.</p>
+      <p>Made with kopi, pikiran random, sedikit CSS, dan keputusan yang kadang dipertanyakan.</p>
     </div>
   </footer>
 
+  <button class="scroll-top" id="scrollTop" aria-label="Kembali ke atas" title="Kembali ke atas">↑</button>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
-
   <script src="script.js"></script>
 </body>
 </html>
