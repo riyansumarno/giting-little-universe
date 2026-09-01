@@ -89,13 +89,14 @@
         </label>
         <button class="btn tiny" id="shuffleBtn">Acak ✦</button>
         <button class="btn tiny soft" id="openQuotesModal">Lihat semua</button>
-        <div class="carousel-controls" aria-label="Navigasi carousel quote">
-          <button class="icon-btn" id="quotesPrev" aria-label="Geser quote ke kiri">←</button>
-          <button class="icon-btn" id="quotesNext" aria-label="Geser quote ke kanan">→</button>
-        </div>
       </div>
 
-      <div class="quotes-carousel" id="quotesCarousel" tabindex="0" aria-live="polite"></div>
+      <div class="single-quote-shell">
+        <button class="quote-nav quote-nav-prev" id="quotesPrev" aria-label="Quote sebelumnya">←</button>
+        <div class="quotes-carousel" id="quotesCarousel" tabindex="0" aria-live="polite" aria-label="Quote. Geser kanan atau kiri untuk berpindah."></div>
+        <button class="quote-nav quote-nav-next" id="quotesNext" aria-label="Quote berikutnya">→</button>
+      </div>
+      <div class="quote-pager"><span id="quotePosition">1 / 1</span><span>← geser →</span></div>
     </section>
 
     <section class="punk-section container section-anchor" id="kehidupunk">
@@ -165,18 +166,29 @@
         <div><p class="eyebrow">gemesin, tengil, dan agak tidak kooperatif</p><h2>Mini Game Arcade 🎮</h2></div>
       </div>
 
-      <div class="game-picker" id="gamePicker" role="tablist" aria-label="Pilih mini game">
-        <button class="game-tab active" role="tab" aria-selected="true" data-game="star">⭐ Bintang Bandel</button>
-        <button class="game-tab" role="tab" aria-selected="false" data-game="betah">💗 Kamu Betah?</button>
-        <button class="game-tab" role="tab" aria-selected="false" data-game="button">🔴 Jangan Ditekan</button>
-        <button class="game-tab" role="tab" aria-selected="false" data-game="cat">🐱 Cari Si Kucing</button>
-        <button class="game-tab" role="tab" aria-selected="false" data-game="suit">✊ Suit Semesta</button>
+      <div class="game-picker glass">
+        <label class="game-select-wrap" for="gameSelect">
+          <span>Pilih game</span>
+          <select id="gameSelect" aria-label="Pilih mini game">
+            <option value="star">⭐ Bintang Bandel</option>
+            <option value="betah">💗 Kamu Betah?</option>
+            <option value="button">🔴 Jangan Ditekan</option>
+            <option value="cat">🐱 Cari Si Kucing</option>
+            <option value="suit">✊ Suit Semesta</option>
+            <option value="ten">⏱️ Tepat 10 Detik</option>
+            <option value="green">🟢 Lampu Hijau Ngeselin</option>
+            <option value="memory">☁️ Memory Awan</option>
+            <option value="meter">🎯 Stop di Tengah</option>
+            <option value="coin">🪙 Koin Galau</option>
+          </select>
+        </label>
+        <button class="btn tiny soft" id="randomGame">Acak game 🎲</button>
       </div>
 
       <div class="game-shell glass">
         <section class="game-panel active" id="game-star" data-game-panel="star" role="tabpanel">
           <div class="game-panel-head">
-            <div><h3>Tangkap Bintang Bandel ⭐</h3><p>Tangkap yang asli. Jangan gampang percaya yang glowing.</p></div>
+            <div><h3>Tangkap Bintang Bandel ⭐</h3><p>Tangkap yang asli. Yang terlalu glowing patut dicurigai.</p></div>
             <div class="score-mini"><span>Skor <b id="score">0</b></span><span>Best <b id="bestScore">0</b></span><span>Waktu <b id="gameTime">18.0</b>s</span></div>
           </div>
           <div class="game-board" id="gameBoard">
@@ -206,9 +218,7 @@
             <div class="red-face" id="redFace">(•̀ᴗ•́)و</div>
             <h3>Tombol ini jangan ditekan.</h3>
             <p id="redText">Serius. Jangan.</p>
-            <div class="red-arena" id="redArena">
-              <button class="red-button" id="redButton">JANGAN TEKAN</button>
-            </div>
+            <div class="red-arena" id="redArena"><button class="red-button" id="redButton">JANGAN TEKAN</button></div>
             <div class="game-footer"><span>Kenakalan <strong id="redCount">0</strong></span><button class="btn tiny soft" id="resetRed">Reset dosa kecil</button></div>
           </div>
         </section>
@@ -229,12 +239,64 @@
             <p id="suitText">Semesta bilang dia sportif. Kita lihat saja.</p>
             <div class="suit-score"><span>Kamu <b id="userSuitScore">0</b></span><span>Semesta <b id="cpuSuitScore">0</b></span></div>
             <div class="suit-stage"><div id="userSuitFace">🤔</div><span>VS</span><div id="cpuSuitFace">☁️</div></div>
-            <div class="suit-buttons">
-              <button class="suit-btn" data-suit="rock">✊<span>Batu</span></button>
-              <button class="suit-btn" data-suit="paper">✋<span>Kertas</span></button>
-              <button class="suit-btn" data-suit="scissors">✌️<span>Gunting</span></button>
-            </div>
+            <div class="suit-buttons"><button class="suit-btn" data-suit="rock">✊<span>Batu</span></button><button class="suit-btn" data-suit="paper">✋<span>Kertas</span></button><button class="suit-btn" data-suit="scissors">✌️<span>Gunting</span></button></div>
             <div class="game-footer"><span id="suitResult">Pilih senjatamu.</span><button class="btn tiny soft" id="resetSuit">Reset skor</button></div>
+          </div>
+        </section>
+
+        <section class="game-panel" id="game-ten" data-game-panel="ten" role="tabpanel" hidden>
+          <div class="center-game">
+            <div class="game-big-emoji">⏱️</div><h3>Tepat 10 Detik</h3>
+            <p>Mulai, rasakan waktu, lalu hentikan sedekat mungkin dengan 10 detik. Jamnya sengaja disembunyikan.</p>
+            <div class="timing-orb" id="tenOrb">10?</div>
+            <button class="btn primary game-main-btn" id="tenButton">Mulai</button>
+            <div class="game-result-line" id="tenResult">Feeling dulu. Jangan buka stopwatch sebelah.</div>
+            <small>Best selisih: <b id="tenBest">—</b></small>
+          </div>
+        </section>
+
+        <section class="game-panel" id="game-green" data-game-panel="green" role="tabpanel" hidden>
+          <div class="center-game">
+            <div class="game-big-emoji">🚦</div><h3>Lampu Hijau Ngeselin</h3>
+            <p>Tekan saat lampunya hijau. Kepagian dianggap sok tahu.</p>
+            <div class="traffic-light" id="greenLight"><span></span></div>
+            <button class="btn primary game-main-btn" id="greenButton">Mulai</button>
+            <div class="game-result-line" id="greenResult">Refleksmu akan dihakimi dengan sopan.</div>
+            <small>Best reaksi: <b id="greenBest">—</b></small>
+          </div>
+        </section>
+
+        <section class="game-panel" id="game-memory" data-game-panel="memory" role="tabpanel" hidden>
+          <div class="center-game">
+            <div class="game-big-emoji">☁️</div><h3>Memory Awan</h3>
+            <p>Ingat urutannya. Awan tidak menerima alasan “tadi kelihatan kok”.</p>
+            <div class="memory-status" id="memoryStatus">Level 0</div>
+            <div class="memory-pad" id="memoryPad">
+              <button data-memory="0">☁️</button><button data-memory="1">🌸</button><button data-memory="2">⭐</button><button data-memory="3">🐰</button>
+            </div>
+            <button class="btn primary game-main-btn" id="memoryStart">Mulai</button>
+            <div class="game-result-line" id="memoryResult">Empat tombol. Harusnya gampang. Katanya.</div>
+          </div>
+        </section>
+
+        <section class="game-panel" id="game-meter" data-game-panel="meter" role="tabpanel" hidden>
+          <div class="center-game">
+            <div class="game-big-emoji">🎯</div><h3>Stop di Tengah</h3>
+            <p>Hentikan penunjuk sedekat mungkin dengan zona tengah. Jangan salahkan jempol.</p>
+            <div class="meter-track" id="meterTrack"><span class="meter-zone"></span><span class="meter-pointer" id="meterPointer"></span></div>
+            <button class="btn primary game-main-btn" id="meterButton">Mulai</button>
+            <div class="game-result-line" id="meterResult">Tengah itu damai. Penunjuknya tidak.</div>
+            <small>Best: <b id="meterBest">0</b>/100</small>
+          </div>
+        </section>
+
+        <section class="game-panel" id="game-coin" data-game-panel="coin" role="tabpanel" hidden>
+          <div class="center-game">
+            <div class="game-big-emoji coin-face" id="coinFace">🪙</div><h3>Koin Galau</h3>
+            <p>Pilih sisi. Koinnya punya hak untuk drama.</p>
+            <div class="coin-score"><span>Kamu <b id="coinWin">0</b></span><span>Koin <b id="coinLose">0</b></span></div>
+            <div class="coin-choices"><button class="btn soft" data-coin="cloud">☁️ Awan</button><button class="btn soft" data-coin="flower">🌸 Bunga</button></div>
+            <div class="game-result-line" id="coinResult">Silakan mempercayakan keputusan pada benda bulat.</div>
           </div>
         </section>
       </div>
@@ -254,8 +316,10 @@
     <section class="contact container section-anchor" id="contact">
       <div class="section-head"><div><p class="eyebrow">kalau mau nyapa, jangan lempar batu</p><h2>Kontak & jejak digital</h2></div><a class="btn tiny soft" href="https://riyangiting.blogspot.com/p/kontak-riyan.html" target="_blank" rel="noopener">Kontak lengkap ↗</a></div>
       <div class="contact-grid" id="contactGrid">
-        <a class="contact-item glass" href="https://riyangiting.blogspot.com" target="_blank" rel="noopener"><span>🌐</span><div><strong>Blog</strong><small>Rahasia yang Bukan</small></div><b>↗</b></a>
-        <a class="contact-item glass" href="https://www.youtube.com/@RiyanGiting" target="_blank" rel="noopener"><span>▶</span><div><strong>YouTube</strong><small>Riyan Giting</small></div><b>↗</b></a>
+        <a class="contact-item glass" data-service="Blog" href="https://riyangiting.blogspot.com" target="_blank" rel="noopener"><span>🌐</span><div><strong>Blog</strong><small>Rahasia yang Bukan</small></div><b>↗</b></a>
+        <a class="contact-item glass" data-service="Facebook" href="https://www.facebook.com/gitingriyan/" target="_blank" rel="noopener"><span>f</span><div><strong>Facebook</strong><small>Riyan Giting</small></div><b>↗</b></a>
+        <a class="contact-item glass" data-service="Instagram" href="https://www.instagram.com/riyangiting/" target="_blank" rel="noopener"><span>◎</span><div><strong>Instagram</strong><small>@riyangiting</small></div><b>↗</b></a>
+        <a class="contact-item glass" data-service="YouTube" href="https://www.youtube.com/@RiyanGiting" target="_blank" rel="noopener"><span>▶</span><div><strong>YouTube</strong><small>Riyan Giting</small></div><b>↗</b></a>
         <div class="contact-loading" id="contactLoading">Mencari akun lain…</div>
       </div>
     </section>

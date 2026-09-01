@@ -77,6 +77,123 @@ const quotes = [
   {cat:'KehiduPUNK', color:'#f7e85d', text:'Punk tanpa empati cuma suara keras.'}
 ];
 
+
+// ===== Blogverse: parafrasa dari tema dan jejak tulisan Riyan Giting =====
+quotes.push(
+  {cat:"Rahasia", color:"#d7c7ff", text:"Ada cerita yang tidak perlu disembunyikan. Cukup jangan dijelaskan terlalu lengkap.", origin:'blogverse'},
+  {cat:"Rahasia", color:"#d7c7ff", text:"Rahasia paling aman kadang bukan yang dikunci, tetapi yang ditulis sebagai puisi.", origin:'blogverse'},
+  {cat:"Rahasia", color:"#d7c7ff", text:"Kalau semua orang paham maksud tulisanmu, mungkin rahasianya kurang belok.", origin:'blogverse'},
+  {cat:"Rahasia", color:"#d7c7ff", text:"Tidak semua yang ditulis harus diberi nama. Beberapa cerita cukup diberi jeda.", origin:'blogverse'},
+  {cat:"Rahasia", color:"#d7c7ff", text:"Ada hal yang ingin diceritakan, tetapi tidak ingin dijadikan pengumuman.", origin:'blogverse'},
+  {cat:"Rahasia", color:"#d7c7ff", text:"Rahasia yang bukan rahasia: kita sering menulis untuk mengerti diri sendiri.", origin:'blogverse'},
+  {cat:"Rahasia", color:"#d7c7ff", text:"Kalimat bisa jujur tanpa membocorkan seluruh alamat perasaannya.", origin:'blogverse'},
+  {cat:"Rahasia", color:"#d7c7ff", text:"Cerita boleh terbuka. Tokohnya tidak harus ikut konferensi pers.", origin:'blogverse'},
+  {cat:"Rahasia", color:"#d7c7ff", text:"Kadang yang disamarkan bukan kejadiannya, cuma siapa yang bikin jantung salah tempo.", origin:'blogverse'},
+  {cat:"Rahasia", color:"#d7c7ff", text:"Kalau hidup terasa terlalu transparan, tambahkan metafora. Bukan kebohongan, cuma tirai tipis.", origin:'blogverse'},
+  {cat:"Cerita", color:"#aee2ff", text:"Kejadian kecil sering baru terasa penting setelah berubah jadi kenangan.", origin:'blogverse'},
+  {cat:"Cerita", color:"#aee2ff", text:"Cerita yang bagus tidak selalu punya ledakan. Kadang cuma punya satu sore yang sulit dilupakan.", origin:'blogverse'},
+  {cat:"Cerita", color:"#aee2ff", text:"Hidup jarang meminta izin sebelum berubah jadi bahan tulisan.", origin:'blogverse'},
+  {cat:"Cerita", color:"#aee2ff", text:"Yang terlihat biasa hari ini bisa jadi bab favorit beberapa tahun lagi.", origin:'blogverse'},
+  {cat:"Cerita", color:"#aee2ff", text:"Tidak semua hari perlu istimewa. Sebagian cukup layak dikenang.", origin:'blogverse'},
+  {cat:"Cerita", color:"#aee2ff", text:"Kalau memori mulai kabur, tulisan bisa jadi bangku kecil untuk duduk sebentar di masa lalu.", origin:'blogverse'},
+  {cat:"Cerita", color:"#aee2ff", text:"Cerita nyata juga butuh bumbu. Yang penting jangan sampai bumbunya jadi tokoh utama.", origin:'blogverse'},
+  {cat:"Cerita", color:"#aee2ff", text:"Ada kisah yang tidak selesai; ia cuma berhenti mendapat paragraf baru.", origin:'blogverse'},
+  {cat:"Cerita", color:"#aee2ff", text:"Beberapa kejadian datang sebagai masalah, pulangnya malah jadi cerita lucu.", origin:'blogverse'},
+  {cat:"Cerita", color:"#aee2ff", text:"Tulisan adalah cara paling sopan untuk bilang: aku masih ingat.", origin:'blogverse'},
+  {cat:"Dewasa", color:"#ffc6a9", text:"Dewasa ternyata bukan level. Lebih mirip update aplikasi: bug lama hilang, bug baru muncul.", origin:'blogverse'},
+  {cat:"Dewasa", color:"#ffc6a9", text:"Usia bertambah. Kepastian belum tentu. Tagihan biasanya lebih disiplin.", origin:'blogverse'},
+  {cat:"Dewasa", color:"#ffc6a9", text:"Menjadi dewasa kadang cuma belajar menjawab “iya, nanti” dengan wajah tenang.", origin:'blogverse'},
+  {cat:"Dewasa", color:"#ffc6a9", text:"Umur boleh naik. Panik soal masa depan tidak harus ikut naik kelas.", origin:'blogverse'},
+  {cat:"Dewasa", color:"#ffc6a9", text:"Tidak semua orang sampai di tujuan hidup pada kilometer yang sama.", origin:'blogverse'},
+  {cat:"Dewasa", color:"#ffc6a9", text:"Dewasa adalah saat kamu sadar sebagian nasihat benar, tetapi waktunya suka ngeselin.", origin:'blogverse'},
+  {cat:"Dewasa", color:"#ffc6a9", text:"Bertambah usia membuat kalender makin serius, padahal kita masih suka lupa naruh kunci.", origin:'blogverse'},
+  {cat:"Dewasa", color:"#ffc6a9", text:"Hidup tidak terlambat hanya karena timeline-mu tidak cocok dengan grup keluarga.", origin:'blogverse'},
+  {cat:"Dewasa", color:"#ffc6a9", text:"Ada usia ideal versi orang lain. Ada usia nyata versi dompet, hati, dan kesiapan.", origin:'blogverse'},
+  {cat:"Dewasa", color:"#ffc6a9", text:"Jangan biarkan angka umur berubah jadi alarm kebakaran untuk semua keputusan.", origin:'blogverse'},
+  {cat:"Ordinary", color:"#bce8d8", text:"Menjadi biasa tidak sama dengan tidak berarti.", origin:'blogverse'},
+  {cat:"Ordinary", color:"#bce8d8", text:"Tidak perlu terlihat luar biasa setiap hari. Bertahan waras sudah punya estetika sendiri.", origin:'blogverse'},
+  {cat:"Ordinary", color:"#bce8d8", text:"Orang biasa juga boleh punya mimpi yang ukurannya bikin lemari tidak muat.", origin:'blogverse'},
+  {cat:"Ordinary", color:"#bce8d8", text:"Kecil bukan berarti kurang. Kadang justru lebih gampang masuk ke tempat teduh.", origin:'blogverse'},
+  {cat:"Ordinary", color:"#bce8d8", text:"Tidak semua karakter utama harus masuk ruangan dengan efek slow motion.", origin:'blogverse'},
+  {cat:"Ordinary", color:"#bce8d8", text:"Aku tidak sedang merendah. Memang nyaman jadi manusia biasa dengan pikiran agak ramai.", origin:'blogverse'},
+  {cat:"Ordinary", color:"#bce8d8", text:"Biasa saja itu underrated. Banyak ketenangan lahir dari tidak sibuk terlihat hebat.", origin:'blogverse'},
+  {cat:"Ordinary", color:"#bce8d8", text:"Kalau semua orang ingin jadi luar biasa, siapa yang menjaga kewarasan bagian biasa?", origin:'blogverse'},
+  {cat:"Ordinary", color:"#bce8d8", text:"Tidak mencolok bukan berarti tidak punya warna.", origin:'blogverse'},
+  {cat:"Ordinary", color:"#bce8d8", text:"Versi sederhana tetap versi lengkap kalau kamu nyaman menjalaninya.", origin:'blogverse'},
+  {cat:"Puisi", color:"#e2c9ff", text:"Ada perasaan yang gagal jadi percakapan lalu sukses jadi bait.", origin:'blogverse'},
+  {cat:"Puisi", color:"#e2c9ff", text:"Puisi itu tempat kalimat boleh malu-malu tetapi tetap jujur.", origin:'blogverse'},
+  {cat:"Puisi", color:"#e2c9ff", text:"Kalau prosa terlalu terang, puisi tahu cara menyalakan lampu temaram.", origin:'blogverse'},
+  {cat:"Puisi", color:"#e2c9ff", text:"Beberapa nama lebih aman berubah menjadi “seseorang” di ujung bait.", origin:'blogverse'},
+  {cat:"Puisi", color:"#e2c9ff", text:"Kata-kata bisa pelan, tetapi tetap sampai ke tempat yang berisik di dalam kepala.", origin:'blogverse'},
+  {cat:"Puisi", color:"#e2c9ff", text:"Kadang kita menulis indah bukan karena hidup rapi, tetapi karena ingin memberinya bingkai.", origin:'blogverse'},
+  {cat:"Puisi", color:"#e2c9ff", text:"Puisi tidak selalu menjawab. Kadang ia cuma duduk menemani pertanyaan.", origin:'blogverse'},
+  {cat:"Puisi", color:"#e2c9ff", text:"Yang tidak sanggup diucapkan lurus kadang menemukan jalan lewat rima.", origin:'blogverse'},
+  {cat:"Ingatan", color:"#ffe0a8", text:"Ingatan punya algoritma sendiri: yang ingin dilupakan malah sering naik ke beranda.", origin:'blogverse'},
+  {cat:"Ingatan", color:"#ffe0a8", text:"Kenangan tidak selalu meminta kembali. Kadang cuma ingin diakui pernah ada.", origin:'blogverse'},
+  {cat:"Ingatan", color:"#ffe0a8", text:"Ada masa lalu yang sudah selesai, tetapi playlist-nya masih aktif.", origin:'blogverse'},
+  {cat:"Ingatan", color:"#ffe0a8", text:"Kita tumbuh, tetapi beberapa versi lama masih tinggal di sudut memori.", origin:'blogverse'},
+  {cat:"Ingatan", color:"#ffe0a8", text:"Foto menyimpan wajah. Tulisan sering menyimpan suasana yang tidak tertangkap kamera.", origin:'blogverse'},
+  {cat:"Ingatan", color:"#ffe0a8", text:"Lupa itu manusiawi. Untung beberapa hari pernah ditulis.", origin:'blogverse'},
+  {cat:"Ingatan", color:"#ffe0a8", text:"Masa lalu tidak perlu diedit terus. Simpan saja sebagai draft yang sudah dipublikasikan.", origin:'blogverse'},
+  {cat:"Ingatan", color:"#ffe0a8", text:"Kadang rindu cuma notifikasi lama yang mendadak muncul lagi.", origin:'blogverse'},
+  {cat:"Ibu", color:"#ffb9c9", text:"Ibu punya bakat mengubah obrolan santai menjadi rapat masa depan.", origin:'blogverse'},
+  {cat:"Ibu", color:"#ffb9c9", text:"Pertanyaan ibu kadang pendek. Efek loading di kepala bisa berhari-hari.", origin:'blogverse'},
+  {cat:"Ibu", color:"#ffb9c9", text:"Nasihat ibu sering datang lebih cepat daripada kesiapan kita mengakuinya benar.", origin:'blogverse'},
+  {cat:"Ibu", color:"#ffb9c9", text:"Ibu bertanya kapan. Hidup menjawab: sedang diproses.", origin:'blogverse'},
+  {cat:"Ibu", color:"#ffb9c9", text:"Ada desakan yang bikin geleng kepala, tetapi diam-diam berasal dari rasa sayang.", origin:'blogverse'},
+  {cat:"Ibu", color:"#ffb9c9", text:"Kalau ibu mulai membahas usia, kopi sebaiknya disiapkan lebih dulu.", origin:'blogverse'},
+  {cat:"Cinta", color:"#ff9fb9", text:"Ngobrol nyaman belum tentu cinta. Kadang memang obrolannya saja yang tidak minta pulang.", origin:'blogverse'},
+  {cat:"Cinta", color:"#ff9fb9", text:"Tertarik itu manusiawi. Membuat seluruh masa depan dari satu senyum agak terlalu rajin.", origin:'blogverse'},
+  {cat:"Cinta", color:"#ff9fb9", text:"Tidak menggoda bukan berarti tidak melihat. Ada orang yang kagum dengan mode senyap.", origin:'blogverse'},
+  {cat:"Cinta", color:"#ff9fb9", text:"Bisa keluar berdua tanpa harus langsung memesan nama anak.", origin:'blogverse'},
+  {cat:"Cinta", color:"#ff9fb9", text:"Ada yang menawan. Tidak semua harus ditawan.", origin:'blogverse'},
+  {cat:"Cinta", color:"#ff9fb9", text:"Perasaan boleh tumbuh. Kesimpulan jangan dipanen terlalu muda.", origin:'blogverse'},
+  {cat:"Cinta", color:"#ff9fb9", text:"Chemistry itu menarik. Tetap cek apakah komunikasinya ikut lulus praktikum.", origin:'blogverse'},
+  {cat:"Cinta", color:"#ff9fb9", text:"Kadang hati cuma bilang “menarik”, bukan “ayo bikin undangan”.", origin:'blogverse'},
+  {cat:"Receh", color:"#ff8fb7", text:"Menjadi dewasa itu mahal. Untung ketawa masih banyak yang gratis.", origin:'blogverse'},
+  {cat:"Receh", color:"#ff8fb7", text:"Kalau rahasia ditulis di blog, minimal beri metafora biar algoritma ikut bingung.", origin:'blogverse'},
+  {cat:"Receh", color:"#ff8fb7", text:"Ibu tanya kapan nikah. Kalender pura-pura tidak dengar.", origin:'blogverse'},
+  {cat:"Receh", color:"#ff8fb7", text:"Aku bukan menghindari keputusan. Aku sedang memberi kesempatan keputusan itu matang sendiri.", origin:'blogverse'},
+  {cat:"Receh", color:"#ff8fb7", text:"Kenangan lama muncul lagi. Mungkin cache belum dibersihkan.", origin:'blogverse'},
+  {cat:"Receh", color:"#ff8fb7", text:"Hidup ordinary, tab browser extraordinary.", origin:'blogverse'},
+  {cat:"Nyeleneh", color:"#ffd978", text:"Kalau sebuah cerita terlalu mudah ditebak, sisipkan hidup. Biasanya langsung berantakan.", origin:'blogverse'},
+  {cat:"Nyeleneh", color:"#ffd978", text:"Tidak semua diam itu misterius. Kadang memang belum tahu mau jawab apa.", origin:'blogverse'},
+  {cat:"Nyeleneh", color:"#ffd978", text:"Jangan paksa semua kejadian punya makna. Ada juga yang memang cuma salah belok.", origin:'blogverse'},
+  {cat:"Nyeleneh", color:"#ffd978", text:"Kalau hati dan logika rapat, biasanya notulennya tidak pernah selesai.", origin:'blogverse'},
+  {cat:"Nyeleneh", color:"#ffd978", text:"Hidup punya kebiasaan aneh: memberi jawaban setelah kita berhenti menunggu.", origin:'blogverse'},
+  {cat:"Nyeleneh", color:"#ffd978", text:"Kalau masa depan belum kelihatan, jangan dipukul monitornya.", origin:'blogverse'},
+  {cat:"Tengil", color:"#ffad8a", text:"Aku tidak anti nasihat. Cuma kadang butuh versi yang tidak pakai nada pengumuman.", origin:'blogverse'},
+  {cat:"Tengil", color:"#ffad8a", text:"Bukan susah diatur. Aku cuma suka membaca syarat dan ketentuan hidup sampai bawah.", origin:'blogverse'},
+  {cat:"Tengil", color:"#ffad8a", text:"Kalau belum yakin, aku pilih mikir. Gratis, walau kadang kebablasan.", origin:'blogverse'},
+  {cat:"Tengil", color:"#ffad8a", text:"Orang lain boleh punya timeline. Aku juga punya tombol snooze.", origin:'blogverse'},
+  {cat:"Tengil", color:"#ffad8a", text:"Aku bisa serius. Cuma muka hidup kadang terlalu lucu untuk tidak dikomentari.", origin:'blogverse'},
+  {cat:"Tengil", color:"#ffad8a", text:"Bukan sok santai. Paniknya lagi antre.", origin:'blogverse'},
+  {cat:"Kece", color:"#9fe6d4", text:"Ketenangan tidak perlu tampil mahal untuk terasa berkelas.", origin:'blogverse'},
+  {cat:"Kece", color:"#9fe6d4", text:"Punya arah lebih keren daripada sekadar terlihat cepat.", origin:'blogverse'},
+  {cat:"Kece", color:"#9fe6d4", text:"Tidak banyak bicara juga bisa punya isi. Asal memang ada isinya.", origin:'blogverse'},
+  {cat:"Kece", color:"#9fe6d4", text:"Jadi diri sendiri terdengar klise sampai kamu sadar betapa capeknya jadi ekspektasi orang.", origin:'blogverse'},
+  {cat:"Kece", color:"#9fe6d4", text:"Kalau perjalananmu sunyi, bukan berarti salah jalan.", origin:'blogverse'},
+  {cat:"Kece", color:"#9fe6d4", text:"Berkembang diam-diam tetap tumbuh.", origin:'blogverse'},
+  {cat:"Kehidupan", color:"#ffbf9b", text:"Hidup terasa singkat ketika kita mulai menghitungnya dengan kenangan, bukan kalender.", origin:'blogverse'},
+  {cat:"Kehidupan", color:"#ffbf9b", text:"Tidak semua bab dewasa terasa dewasa saat dijalani.", origin:'blogverse'},
+  {cat:"Kehidupan", color:"#ffbf9b", text:"Beberapa keputusan butuh keberanian. Sebagian lain cukup butuh tidur yang benar.", origin:'blogverse'},
+  {cat:"Kehidupan", color:"#ffbf9b", text:"Yang kita anggap terlambat kadang cuma berbeda jadwal.", origin:'blogverse'},
+  {cat:"Kehidupan", color:"#ffbf9b", text:"Kehidupan tidak selalu dramatis. Tetapi detail kecilnya sering paling menetap.", origin:'blogverse'},
+  {cat:"Kehidupan", color:"#ffbf9b", text:"Kalau hari ini terasa biasa, jangan buru-buru meremehkannya. Besok bisa jadi kamu merindukannya.", origin:'blogverse'},
+  {cat:"Absurd", color:"#c8b9ff", text:"Kalau rahasia punya Wi-Fi, semoga password-nya bukan tanggal lahir.", origin:'blogverse'},
+  {cat:"Absurd", color:"#c8b9ff", text:"Pikiran jam malam suka cosplay jadi filsuf.", origin:'blogverse'},
+  {cat:"Absurd", color:"#c8b9ff", text:"Masa depan belum datang, tapi sudah sering jadi topik rapat keluarga.", origin:'blogverse'},
+  {cat:"Absurd", color:"#c8b9ff", text:"Hati bilang santai. Otak membuka tujuh skenario dan satu spreadsheet.", origin:'blogverse'},
+  {cat:"Absurd", color:"#c8b9ff", text:"Kadang hidup seperti puisi modern: aku tahu ada maksudnya, tapi tolong kasih petunjuk.", origin:'blogverse'},
+  {cat:"Absurd", color:"#c8b9ff", text:"Aku baik-baik saja. Definisi “baik” sedang diperbarui.", origin:'blogverse'},
+  {cat:"KehiduPUNK", color:"#f7e85d", text:"KehiduPUNK juga boleh puitis. Distorsi gitar tidak melarang hati punya metafora.", origin:'blogverse'},
+  {cat:"KehiduPUNK", color:"#f7e85d", text:"Jadi ordinary dengan kepala sendiri lebih punk daripada tampil beda demi tepuk tangan.", origin:'blogverse'},
+  {cat:"KehiduPUNK", color:"#f7e85d", text:"Rahasia boleh disimpan. Prinsip jangan disembunyikan saat dibutuhkan.", origin:'blogverse'},
+  {cat:"KehiduPUNK", color:"#f7e85d", text:"Menolak ikut arus bukan kewajiban. Memilih dengan sadar itu yang penting.", origin:'blogverse'},
+  {cat:"KehiduPUNK", color:"#f7e85d", text:"Tulisan bisa lembut, sikap bisa tegas. Volume bukan ukuran keberanian.", origin:'blogverse'},
+  {cat:"KehiduPUNK", color:"#f7e85d", text:"DIY juga berlaku untuk hidup: rakit arahmu sendiri, lalu revisi kalau bautnya longgar.", origin:'blogverse'}
+);
+
 const $ = s => document.querySelector(s);
 const $$ = s => [...document.querySelectorAll(s)];
 const randomFrom = arr => arr[Math.floor(Math.random() * arr.length)];
@@ -128,12 +245,13 @@ $('#mascot').addEventListener('click', () => {
   $('#mascotSpeech').textContent = mascotClicks % 7 === 0 ? '“Iya, aku gemes. Tapi mouse-mu juga butuh istirahat.”' : `“${q.text}”`;
 });
 
-// ===== Quote vending machine compact =====
+// ===== Quote vending machine: satu kartu, tanpa scrollbar =====
 const categorySelect = $('#categorySelect');
 const modalCategorySelect = $('#modalCategorySelect');
 const categories = ['Semua', ...new Set(quotes.map(q => q.cat))];
 let currentCategory = 'Semua';
 let currentOrder = [...quotes];
+let currentQuoteIndex = 0;
 
 function fillCategories(select){
   select.innerHTML = categories.map(cat => `<option value="${cat}">${cat}</option>`).join('');
@@ -144,38 +262,38 @@ fillCategories(modalCategorySelect);
 function filteredQuotes(category = currentCategory, order = currentOrder){
   return category === 'Semua' ? order : order.filter(q => q.cat === category);
 }
-
 function quoteCardHTML(q){
-  return `<article class="mini-quote glass" style="background:linear-gradient(145deg,rgba(255,255,255,.83),${q.color}22)">
+  return `<article class="mini-quote glass single-quote-card" style="background:linear-gradient(145deg,rgba(255,255,255,.92),${q.color}25)">
     <div class="cat"><i style="background:${q.color}"></i>${q.cat}</div>
     <p>“${q.text}”</p>
     <footer><span>Riyan Giting Universe</span><button class="copy-mini" data-copy="${encodeURIComponent(q.text)}" aria-label="Salin quote">⧉</button></footer>
   </article>`;
 }
-
-function renderCarousel(){
-  const list = filteredQuotes();
-  const sample = list.length <= 8 ? list : list.slice(0,8);
-  $('#quotesCarousel').innerHTML = sample.map(quoteCardHTML).join('');
-  $('#quotesCarousel').scrollLeft = 0;
+function renderCarousel(direction=0){
+  const list=filteredQuotes();
+  if(!list.length){ $('#quotesCarousel').innerHTML=''; $('#quotePosition').textContent='0 / 0'; return; }
+  currentQuoteIndex=(currentQuoteIndex%list.length+list.length)%list.length;
+  const stage=$('#quotesCarousel');
+  stage.innerHTML=quoteCardHTML(list[currentQuoteIndex]);
+  $('#quotePosition').textContent=`${currentQuoteIndex+1} / ${list.length}`;
+  if(!reduceMotion && direction){
+    const card=stage.firstElementChild;
+    card.animate([
+      {opacity:.2,transform:`translateX(${direction>0?'24px':'-24px'}) scale(.985)`},
+      {opacity:1,transform:'translateX(0) scale(1)'}
+    ],{duration:220,easing:'cubic-bezier(.2,.8,.2,1)'});
+  }
 }
-
-categorySelect.addEventListener('change', () => {
-  currentCategory = categorySelect.value;
-  modalCategorySelect.value = currentCategory;
-  currentOrder = [...quotes];
-  renderCarousel();
-});
-$('#shuffleBtn').addEventListener('click', () => {
-  currentOrder = shuffle(quotes);
-  renderCarousel();
-  showToast('Mesinnya dikocok. Semoga tidak mabuk.');
-});
-$('#quotesPrev').addEventListener('click', () => $('#quotesCarousel').scrollBy({left:-340,behavior:reduceMotion?'auto':'smooth'}));
-$('#quotesNext').addEventListener('click', () => $('#quotesCarousel').scrollBy({left:340,behavior:reduceMotion?'auto':'smooth'}));
-$('#quotesCarousel').addEventListener('click', e => {
-  const b = e.target.closest('[data-copy]'); if(b) copyText(decodeURIComponent(b.dataset.copy), 'Quote disalin ✦');
-});
+function moveQuote(step){ currentQuoteIndex+=step; renderCarousel(step); }
+categorySelect.addEventListener('change',()=>{currentCategory=categorySelect.value;modalCategorySelect.value=currentCategory;currentOrder=[...quotes];currentQuoteIndex=0;renderCarousel();});
+$('#shuffleBtn').addEventListener('click',()=>{const list=filteredQuotes();if(!list.length)return;currentQuoteIndex=Math.floor(Math.random()*list.length);renderCarousel(1);showToast('Mesinnya memilih satu. Jangan protes ke algoritma.');});
+$('#quotesPrev').addEventListener('click',()=>moveQuote(-1));
+$('#quotesNext').addEventListener('click',()=>moveQuote(1));
+$('#quotesCarousel').addEventListener('click',e=>{const b=e.target.closest('[data-copy]');if(b)copyText(decodeURIComponent(b.dataset.copy),'Quote disalin ✦');});
+$('#quotesCarousel').addEventListener('keydown',e=>{if(e.key==='ArrowLeft'){e.preventDefault();moveQuote(-1);}if(e.key==='ArrowRight'){e.preventDefault();moveQuote(1);}});
+let quoteSwipeStartX=null,quoteSwipeStartY=null;
+$('#quotesCarousel').addEventListener('touchstart',e=>{const t=e.changedTouches[0];quoteSwipeStartX=t.clientX;quoteSwipeStartY=t.clientY;},{passive:true});
+$('#quotesCarousel').addEventListener('touchend',e=>{if(quoteSwipeStartX===null)return;const t=e.changedTouches[0],dx=t.clientX-quoteSwipeStartX,dy=t.clientY-quoteSwipeStartY;quoteSwipeStartX=quoteSwipeStartY=null;if(Math.abs(dx)>45&&Math.abs(dx)>Math.abs(dy)*1.2)moveQuote(dx<0?1:-1);},{passive:true});
 
 // ===== Modal semua quote =====
 function renderModalQuotes(){
@@ -277,12 +395,14 @@ $('#publishDream').addEventListener('click',()=>{
 });
 $('#refreshDreamWall').addEventListener('click',()=>loadDreamWall(true));
 
-// ===== Game hub =====
-$$('.game-tab').forEach(tab=>tab.addEventListener('click',()=>{
-  const key=tab.dataset.game;
-  $$('.game-tab').forEach(t=>{t.classList.toggle('active',t===tab);t.setAttribute('aria-selected',String(t===tab));});
+// ===== Game hub: dropdown =====
+const gameSelect=$('#gameSelect');
+function showGame(key){
   $$('[data-game-panel]').forEach(p=>{const active=p.dataset.gamePanel===key;p.hidden=!active;p.classList.toggle('active',active);});
-}));
+  gameSelect.value=key;
+}
+gameSelect.addEventListener('change',()=>showGame(gameSelect.value));
+$('#randomGame').addEventListener('click',()=>{const opts=[...gameSelect.options];let next=randomFrom(opts).value;if(next===gameSelect.value&&opts.length>1)next=opts[(gameSelect.selectedIndex+1)%opts.length].value;showGame(next);showToast('Semesta memilih game. Tanggung sendiri 🎲');});
 
 // Game 1: Bintang Bandel
 const board=$('#gameBoard'),star=$('#starTarget'),fakeStar=$('#fakeStar'),placeholder=$('#gamePlaceholder'),scoreEl=$('#score'),comboEl=$('#combo'),timeEl=$('#gameTime'),bestEl=$('#bestScore'),gameMessage=$('#gameMessage'),startBtn=$('#startGame');
@@ -329,6 +449,32 @@ function winner(user,cpu){if(user===cpu)return 0;if((user==='rock'&&cpu==='sciss
 $$('.suit-btn').forEach(btn=>btn.addEventListener('click',()=>{const user=btn.dataset.suit;suitRounds++;let cpu=randomFrom(['rock','paper','scissors']);let cheated=false;if(suitRounds%7===0&&Math.random()<.6){cpu=user==='rock'?'paper':user==='paper'?'scissors':'rock';cheated=true;}const result=winner(user,cpu);if(result>0)userSuitScore++;if(result<0)cpuSuitScore++;$('#userSuitScore').textContent=userSuitScore;$('#cpuSuitScore').textContent=cpuSuitScore;$('#userSuitFace').textContent=suitEmoji[user];$('#cpuSuitFace').textContent=suitEmoji[cpu];$('#suitResult').textContent=result===0?'Seri. Semesta pura-pura santai.':result>0?'Kamu menang. Semesta bilang cuma pemanasan.':'Semesta menang.';$('#suitText').textContent=cheated?'Hmm... kok pilihannya terlalu pas? Mencurigakan.':'Semesta bilang dia sportif. Untuk sementara.';}));
 $('#resetSuit').addEventListener('click',()=>{userSuitScore=cpuSuitScore=suitRounds=0;$('#userSuitScore').textContent='0';$('#cpuSuitScore').textContent='0';$('#userSuitFace').textContent='🤔';$('#cpuSuitFace').textContent='☁️';$('#suitResult').textContent='Pilih senjatamu.';$('#suitText').textContent='Semesta bilang dia sportif. Kita lihat saja.';});
 
+
+// Game 6: Tepat 10 Detik
+let tenStartedAt=0,tenRunning=false;const tenBestEl=$('#tenBest');let tenBest=Number(localStorage.getItem('riyanTenBest')||0);if(tenBest)tenBestEl.textContent=`${tenBest.toFixed(3)} dtk`;
+$('#tenButton').addEventListener('click',()=>{if(!tenRunning){tenRunning=true;tenStartedAt=performance.now();$('#tenButton').textContent='STOP!';$('#tenOrb').textContent='…';$('#tenResult').textContent='Jangan hitung terlalu keras. Kedengaran.';return;}tenRunning=false;const elapsed=(performance.now()-tenStartedAt)/1000,diff=Math.abs(elapsed-10);$('#tenOrb').textContent=`${elapsed.toFixed(2)}s`;$('#tenButton').textContent='Coba lagi';$('#tenResult').textContent=diff<.08?'INI CURIGA PAKAI ILMU GAIB 😭':diff<.25?'Gila, dekat banget.':diff<.7?'Lumayan. Jam biologismu masih bergaransi.':diff<1.5?'Agak meleset, tapi harga diri aman.':'Waktumu hidup di zona waktu lain.';if(!tenBest||diff<tenBest){tenBest=diff;localStorage.setItem('riyanTenBest',tenBest);tenBestEl.textContent=`${tenBest.toFixed(3)} dtk`;showToast('Best feeling waktu baru ⏱️');}});
+
+// Game 7: Lampu Hijau Ngeselin
+let greenState='idle',greenReadyAt=0,greenTimer=0;let greenBest=Number(localStorage.getItem('riyanGreenBest')||0);if(greenBest)$('#greenBest').textContent=`${Math.round(greenBest)} ms`;
+function greenReset(text='Mulai'){clearTimeout(greenTimer);greenState='idle';$('#greenLight').classList.remove('ready','waiting');$('#greenButton').textContent=text;}
+$('#greenButton').addEventListener('click',()=>{if(greenState==='idle'){greenState='waiting';$('#greenLight').classList.add('waiting');$('#greenResult').textContent='Tunggu hijau. Jangan sok visioner.';$('#greenButton').textContent='TUNGGU…';greenTimer=setTimeout(()=>{greenState='ready';greenReadyAt=performance.now();$('#greenLight').classList.remove('waiting');$('#greenLight').classList.add('ready');$('#greenButton').textContent='TEKAN!';},1200+Math.random()*3000);return;}if(greenState==='waiting'){greenReset('Ulangi');$('#greenResult').textContent='KEPAGIAN. Lampunya bahkan belum sempat punya harapan.';return;}if(greenState==='ready'){const ms=performance.now()-greenReadyAt;$('#greenResult').textContent=ms<190?`${Math.round(ms)} ms. Jempolmu mencurigakan.`:ms<300?`${Math.round(ms)} ms. Sat-set.`:ms<480?`${Math.round(ms)} ms. Masih waras.`:`${Math.round(ms)} ms. Lampunya sempat menua.`;if(!greenBest||ms<greenBest){greenBest=ms;localStorage.setItem('riyanGreenBest',greenBest);$('#greenBest').textContent=`${Math.round(greenBest)} ms`;}greenReset('Main lagi');}});
+
+// Game 8: Memory Awan
+const memButtons=$$('#memoryPad [data-memory]');let memorySeq=[],memoryInput=[],memoryAccept=false,memoryLevel=0;
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+async function playMemory(){memoryAccept=false;$('#memoryResult').textContent='Lihat baik-baik…';await sleep(350);for(const n of memorySeq){const b=memButtons[n];b.classList.add('flash');await sleep(420);b.classList.remove('flash');await sleep(150);}memoryInput=[];memoryAccept=true;$('#memoryResult').textContent='Sekarang giliranmu.';}
+$('#memoryStart').addEventListener('click',()=>{memorySeq=[Math.floor(Math.random()*4)];memoryLevel=1;$('#memoryStatus').textContent=`Level ${memoryLevel}`;$('#memoryStart').textContent='Restart';playMemory();});
+memButtons.forEach((b,i)=>b.addEventListener('click',async()=>{if(!memoryAccept)return;b.classList.add('tap');setTimeout(()=>b.classList.remove('tap'),120);memoryInput.push(i);const pos=memoryInput.length-1;if(memoryInput[pos]!==memorySeq[pos]){memoryAccept=false;$('#memoryResult').textContent=`Salah di level ${memoryLevel}. Awan kecewa tipis.`;$('#memoryStatus').textContent=`Mentok level ${memoryLevel}`;return;}if(memoryInput.length===memorySeq.length){memoryAccept=false;memoryLevel++;$('#memoryStatus').textContent=`Level ${memoryLevel}`;$('#memoryResult').textContent='Benar. Awan menambah beban.';memorySeq.push(Math.floor(Math.random()*4));await sleep(650);playMemory();}}));
+
+// Game 9: Stop di Tengah
+let meterRunning=false,meterStart=0,meterFrame=0;let meterBest=Number(localStorage.getItem('riyanMeterBest')||0);$('#meterBest').textContent=meterBest;
+function meterTick(){if(!meterRunning)return;const t=(performance.now()-meterStart)/850;const x=(Math.sin(t*Math.PI)+1)/2*100;$('#meterPointer').style.left=`${x}%`;meterFrame=requestAnimationFrame(meterTick);}
+$('#meterButton').addEventListener('click',()=>{if(!meterRunning){meterRunning=true;meterStart=performance.now();$('#meterButton').textContent='STOP!';$('#meterResult').textContent='Tengahnya lewat terus. Sabar.';meterTick();return;}meterRunning=false;cancelAnimationFrame(meterFrame);const x=parseFloat($('#meterPointer').style.left)||0;const score=Math.max(0,Math.round(100-Math.abs(x-50)*2));$('#meterButton').textContent='Main lagi';$('#meterResult').textContent=score>=98?`${score}/100. Kok bisa?!`:score>=85?`${score}/100. Hampir meditasi.`:score>=60?`${score}/100. Lumayan tengah.`:`${score}/100. Itu bukan tengah, itu merantau.`;if(score>meterBest){meterBest=score;localStorage.setItem('riyanMeterBest',meterBest);$('#meterBest').textContent=meterBest;showToast('Best meter baru 🎯');}});
+
+// Game 10: Koin Galau
+let coinWin=0,coinLose=0,coinRound=0,coinBusy=false;
+$$('[data-coin]').forEach(btn=>btn.addEventListener('click',async()=>{if(coinBusy)return;coinBusy=true;coinRound++;const pick=btn.dataset.coin;$('#coinFace').classList.add('flip');$('#coinResult').textContent=coinRound%5===0?'Koinnya bilang: bentar, aku lagi mikir…':'Koin sedang membuat keputusan besar yang tidak penting.';await sleep(coinRound%5===0?1250:650);const result=Math.random()<.5?'cloud':'flower';$('#coinFace').classList.remove('flip');$('#coinFace').textContent=result==='cloud'?'☁️':'🌸';if(pick===result){coinWin++;$('#coinWin').textContent=coinWin;$('#coinResult').textContent=randomFrom(['Menang. Koinnya bilang kebetulan.','Benar. Jangan langsung merasa cenayang.','Cocok. Semesta pura-pura kaget.']);}else{coinLose++;$('#coinLose').textContent=coinLose;$('#coinResult').textContent=randomFrom(['Salah. Koinnya senyum tipis.','Koin menang. Tidak usah banding.','Meleset. Benda bulat ini mulai tengil.']);}coinBusy=false;}));
+
 // ===== Kontak dari halaman Blogger =====
 const contactServiceMap=[
   {test:/instagram\.com/i,name:'Instagram',icon:'◎'},
@@ -342,7 +488,7 @@ const contactServiceMap=[
   {test:/telegram\.(me|org)|t\.me/i,name:'Telegram',icon:'➤'}
 ];
 function contactDescriptor(href){return contactServiceMap.find(i=>i.test.test(href))||null;}
-function renderBloggerContacts(links){const grid=$('#contactGrid'),loading=$('#contactLoading'),existing=new Set([...grid.querySelectorAll('a')].map(a=>a.href.replace(/\/$/,''))),seen=new Set();links.forEach(({href,label})=>{const info=contactDescriptor(href);if(!info)return;let absolute;try{absolute=new URL(href,'https://riyangiting.blogspot.com').href;}catch{return;}const normalized=absolute.replace(/\/$/,'');const key=`${info.name}:${normalized}`;if(existing.has(normalized)||seen.has(key))return;seen.add(key);const a=document.createElement('a');a.className='contact-item glass';a.href=absolute;a.target='_blank';a.rel='noopener';const display=(label||absolute).replace(/^https?:\/\//,'').replace(/^www\./,'').slice(0,70);a.innerHTML=`<span>${info.icon}</span><div><strong>${info.name}</strong><small></small></div><b>↗</b>`;a.querySelector('small').textContent=display;grid.insertBefore(a,loading||null);});loading?.remove();}
+function renderBloggerContacts(links){const grid=$('#contactGrid'),loading=$('#contactLoading'),existingServices=new Set([...grid.querySelectorAll('[data-service]')].map(a=>a.dataset.service)),seenServices=new Set();links.forEach(({href,label})=>{const info=contactDescriptor(href);if(!info||existingServices.has(info.name)||seenServices.has(info.name))return;let absolute;try{absolute=new URL(href,'https://riyangiting.blogspot.com').href;}catch{return;}seenServices.add(info.name);const a=document.createElement('a');a.className='contact-item glass';a.dataset.service=info.name;a.href=absolute;a.target='_blank';a.rel='noopener';const display=(label||absolute).replace(/^https?:\/\//,'').replace(/^www\./,'').slice(0,70);a.innerHTML=`<span>${info.icon}</span><div><strong>${info.name}</strong><small></small></div><b>↗</b>`;a.querySelector('small').textContent=display;grid.insertBefore(a,loading||null);});loading?.remove();}
 window.__riyanContactFeed=function(data){try{const entries=data?.feed?.entry||[];const page=entries.find(entry=>/kontak/i.test(entry?.title?.$t||'')||/\/p\/kontak-riyan\.html/i.test((entry?.link||[]).find(l=>l.rel==='alternate')?.href||''));if(!page)throw new Error();const doc=new DOMParser().parseFromString(page?.content?.$t||'','text/html');renderBloggerContacts([...doc.querySelectorAll('a[href]')].map(a=>({href:a.getAttribute('href'),label:a.textContent.trim()})));}catch{$('#contactLoading')?.remove();}};
 function loadBloggerContacts(){const s=document.createElement('script');s.src='https://riyangiting.blogspot.com/feeds/pages/default?alt=json-in-script&max-results=50&callback=__riyanContactFeed';s.async=true;s.onerror=()=>$('#contactLoading')?.remove();document.head.appendChild(s);}
 
@@ -355,4 +501,4 @@ const observed=['top','quotes','kehidupunk','dreams','games','about','contact'].
 const observer=new IntersectionObserver(entries=>{const visible=entries.filter(e=>e.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];if(!visible)return;navAnchors.forEach(a=>a.classList.toggle('active',a.getAttribute('href')===`#${visible.target.id}`));},{rootMargin:'-35% 0px -55% 0px',threshold:[0,.2,.5]});observed.forEach(s=>observer.observe(s));
 const scrollTopBtn=$('#scrollTop');window.addEventListener('scroll',()=>scrollTopBtn.classList.toggle('show',scrollY>620),{passive:true});scrollTopBtn.addEventListener('click',()=>scrollTo({top:0,behavior:reduceMotion?'auto':'smooth'}));
 
-renderCarousel();setSpotlight(quotes[0]);setPunkQuote();loadDreamWall();showSharedDreamFromUrl();loadBloggerContacts();$('#year').textContent=new Date().getFullYear();
+renderCarousel();setSpotlight(quotes[0]);setPunkQuote();showGame('star');loadDreamWall();showSharedDreamFromUrl();loadBloggerContacts();$('#year').textContent=new Date().getFullYear();
